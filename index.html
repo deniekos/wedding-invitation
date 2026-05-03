@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#064028">
     <title>Wedding Invitation</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -36,120 +36,6 @@
             color: var(--white);
             overflow-x: hidden;
             line-height: 1.6;
-            position: relative;
-        }
-
-        /* Background Decorative Elements */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* Floating Hearts Animation */
-        .floating-hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            color: var(--gold);
-            opacity: 0.15;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        .heart:nth-child(1) { left: 10%; animation-delay: 0s; font-size: 25px; }
-        .heart:nth-child(2) { left: 20%; animation-delay: 2s; font-size: 15px; }
-        .heart:nth-child(3) { left: 35%; animation-delay: 4s; font-size: 30px; }
-        .heart:nth-child(4) { left: 50%; animation-delay: 0s; font-size: 20px; }
-        .heart:nth-child(5) { left: 65%; animation-delay: 3s; font-size: 18px; }
-        .heart:nth-child(6) { left: 80%; animation-delay: 5s; font-size: 22px; }
-        .heart:nth-child(7) { left: 90%; animation-delay: 1s; font-size: 16px; }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.15;
-            }
-            90% {
-                opacity: 0.15;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Corner Decorations */
-        .corner-decoration {
-            position: fixed;
-            width: 150px;
-            height: 150px;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .corner-top-left {
-            top: 0;
-            left: 0;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' fill-opacity='0.4' d='M0,0 Q50,0 75,25 T100,100 Q50,100 25,75 T0,0 Z'/%3E%3Ccircle cx='30' cy='30' r='15' fill='%23d4af37' fill-opacity='0.3'/%3E%3Cpath fill='%23d4af37' fill-opacity='0.3' d='M100,0 Q120,30 100,60 Q80,30 100,0'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-        }
-
-        .corner-top-right {
-            top: 0;
-            right: 0;
-            transform: scaleX(-1);
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' fill-opacity='0.4' d='M0,0 Q50,0 75,25 T100,100 Q50,100 25,75 T0,0 Z'/%3E%3Ccircle cx='30' cy='30' r='15' fill='%23d4af37' fill-opacity='0.3'/%3E%3Cpath fill='%23d4af37' fill-opacity='0.3' d='M100,0 Q120,30 100,60 Q80,30 100,0'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-        }
-
-        .corner-bottom-left {
-            bottom: 0;
-            left: 0;
-            transform: scaleY(-1);
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' fill-opacity='0.4' d='M0,0 Q50,0 75,25 T100,100 Q50,100 25,75 T0,0 Z'/%3E%3Ccircle cx='30' cy='30' r='15' fill='%23d4af37' fill-opacity='0.3'/%3E%3Cpath fill='%23d4af37' fill-opacity='0.3' d='M100,0 Q120,30 100,60 Q80,30 100,0'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-        }
-
-        .corner-bottom-right {
-            bottom: 0;
-            right: 0;
-            transform: scale(-1);
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23d4af37' fill-opacity='0.4' d='M0,0 Q50,0 75,25 T100,100 Q50,100 25,75 T0,0 Z'/%3E%3Ccircle cx='30' cy='30' r='15' fill='%23d4af37' fill-opacity='0.3'/%3E%3Cpath fill='%23d4af37' fill-opacity='0.3' d='M100,0 Q120,30 100,60 Q80,30 100,0'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-        }
-
-        /* Floral Divider SVG */
-        .floral-divider-svg {
-            text-align: center;
-            margin: 30px 0;
-            opacity: 0.6;
-        }
-
-        .floral-divider-svg svg {
-            max-width: 200px;
-            height: auto;
         }
 
         h1, h2, h3, h4 {
@@ -184,22 +70,6 @@
             transition: opacity 0.8s ease, visibility 0.8s;
             text-align: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Landing Section Background Pattern */
-        #landing::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath fill='%23d4af37' fill-opacity='0.05' d='M200,100 Q250,150 200,200 Q150,150 200,100 M200,200 Q250,250 200,300 Q150,250 200,200'/%3E%3Ccircle cx='200' cy='200' r='80' fill='none' stroke='%23d4af37' stroke-width='1' stroke-opacity='0.1'/%3E%3C/svg%3E");
-            background-size: 300px 300px;
-            opacity: 0.5;
-            pointer-events: none;
         }
 
         #landing.hidden {
@@ -210,8 +80,6 @@
 
         .landing-content {
             animation: fadeInUp 1s ease;
-            position: relative;
-            z-index: 1;
         }
 
         .invitee-name {
@@ -308,27 +176,6 @@
             background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
             text-align: center;
             font-style: italic;
-            position: relative;
-        }
-
-        /* Quote Section Corner Ornaments */
-        #quote::before,
-        #quote::after {
-            content: '❦';
-            position: absolute;
-            font-size: 2rem;
-            color: var(--gold);
-            opacity: 0.4;
-        }
-
-        #quote::before {
-            top: 20px;
-            left: 20px;
-        }
-
-        #quote::after {
-            bottom: 20px;
-            right: 20px;
         }
 
         .quote-text {
@@ -374,24 +221,6 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212,175,55,0.2);
             transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bride-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .bride-card:hover::before {
-            opacity: 1;
         }
 
         .bride-card:hover {
@@ -406,66 +235,30 @@
             border: 4px solid var(--gold);
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
         }
 
         .bride-name {
             font-size: 1.8rem;
             color: var(--gold);
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
         }
 
         .bride-parents {
             font-size: 0.9rem;
             color: var(--cream);
             opacity: 0.9;
-            position: relative;
-            z-index: 1;
         }
 
         /* Countdown Section */
         #countdown-section {
             background: linear-gradient(135deg, var(--primary-green) 0%, #082818 100%);
             text-align: center;
-            position: relative;
-        }
-
-        /* Decorative circles in countdown */
-        #countdown-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            border: 1px solid rgba(212,175,55,0.1);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        #countdown-section::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            border: 1px solid rgba(212,175,55,0.05);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .wedding-date {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: var(--gold);
-            position: relative;
-            z-index: 1;
         }
 
         .countdown-container {
@@ -474,8 +267,6 @@
             gap: 15px;
             margin: 30px 0;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
         }
 
         .countdown-box {
@@ -509,8 +300,6 @@
             border-radius: 25px;
             font-weight: 600;
             transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
         }
 
         .calendar-btn:hover {
@@ -525,17 +314,6 @@
             padding: 30px;
             text-align: center;
             border: 1px solid rgba(212,175,55,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .location-card::before {
-            content: '📍';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 3rem;
-            opacity: 0.1;
         }
 
         .map-btn {
@@ -642,7 +420,6 @@
             overflow: hidden;
             border-radius: 15px;
             background: rgba(0,0,0,0.3);
-            border: 2px solid rgba(212,175,55,0.3);
         }
 
         .gallery-slide {
@@ -711,19 +488,6 @@
         #thank-you {
             text-align: center;
             background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
-            position: relative;
-        }
-
-        /* Decorative elements in thank you section */
-        #thank-you::before {
-            content: '✿';
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            color: var(--gold);
-            opacity: 0.3;
         }
 
         .whatsapp-btn {
@@ -754,16 +518,6 @@
             font-size: 0.85rem;
             color: var(--cream);
             opacity: 0.8;
-            position: relative;
-        }
-
-        footer::before {
-            content: '❦';
-            display: block;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-            opacity: 0.6;
         }
 
         /* Animations */
@@ -788,45 +542,40 @@
             .bride-names {
                 font-size: 2rem;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .countdown-box {
                 min-width: 60px;
                 padding: 10px;
             }
-            
+
             .countdown-number {
                 font-size: 1.5rem;
             }
-            
+
             .gallery-slide {
                 height: 300px;
             }
-            
+
             .timeline {
                 margin-left: 10px;
             }
-            
+
             .timeline::before {
                 left: 8px;
             }
-            
+
             .timeline-dot {
                 left: 0;
                 width: 16px;
                 height: 16px;
             }
-            
+
             .timeline-item {
                 padding-left: 38px;
-            }
-
-            .corner-decoration {
-                width: 100px;
-                height: 100px;
             }
         }
 
@@ -870,30 +619,12 @@
 </head>
 <body>
 
-    <!-- Background Decorations -->
-    <div class="floating-hearts">
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-        <div class="heart">♥</div>
-    </div>
+    <!-- Audio Element (Commented as requested) -->
 
-    <!-- Corner Decorations -->
-    <div class="corner-decoration corner-top-left"></div>
-    <div class="corner-decoration corner-top-right"></div>
-    <div class="corner-decoration corner-bottom-left"></div>
-    <div class="corner-decoration corner-bottom-right"></div>
-
-    <!-- Audio Element (Uncomment when ready) -->
-    <!-- 
-    <audio id="bg-music" loop preload="auto">
+    <audio id="bg-music" loop>
         <source src="wedding.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    -->
 
     <!-- Music Control Button -->
     <div class="music-control" id="musicToggle" onclick="toggleMusic()">
@@ -905,11 +636,11 @@
         <div class="landing-content">
             <div class="invitee-name" id="invitee-display">Kepada Yth.</div>
             <div class="invitee-name" id="invitee-name">Bapak/Ibu/Saudara/i</div>
-            
+
             <div class="bride-names">
-                <div>maleBride</div>
+                <div>Deni Eko Santoso</div>
                 <div class="ampersand">&</div>
-                <div>femaleBride</div>
+                <div>Kharisma Fitri Hapsari</div>
             </div>
 
             <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
@@ -924,17 +655,10 @@
 
     <!-- Main Content -->
     <div id="main-content">
-        
+
         <!-- Quote Section -->
         <section id="quote">
             <div class="section-title">Our Story</div>
-            <div class="floral-divider-svg">
-                <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10,20 Q30,5 50,20 T90,20" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-                    <circle cx="50" cy="20" r="5" fill="#d4af37" opacity="0.6"/>
-                    <path d="M110,20 Q130,5 150,20 T190,20" fill="none" stroke="#d4af37" stroke-width="1" opacity="0.6"/>
-                </svg>
-            </div>
             <div class="quote-text">
                 "And among His signs is this, that He created for you mates from among yourselves, that ye may dwell in tranquillity with them, and He has put love and mercy between your (hearts): verily in that are signs for those who reflect."
             </div>
@@ -944,25 +668,25 @@
         <!-- Bride Info Section -->
         <section id="brides">
             <div class="section-title">The Brides</div>
-            
+
             <div class="bride-container">
                 <div class="bride-card">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="maleBride" class="bride-photo">
-                    <h3 class="bride-name">maleBride</h3>
-                    <p class="bride-parents">Putra dari<br>Bapak [Father's Name] & Ibu [Mother's Name]</p>
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Deni Eko Santoso" class="bride-photo">
+                    <h3 class="bride-name">Deni Eko Santoso</h3>
+                    <p class="bride-parents">Putra pertama dari<br>Bapak Budi Santoso & Ibu Dina Permanasari</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://instagram.com" target="_blank" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://instagram.com" target="dekosantoso" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
                 <div style="text-align: center; font-size: 2rem; color: var(--gold);">&</div>
 
                 <div class="bride-card">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="femaleBride" class="bride-photo">
-                    <h3 class="bride-name">femaleBride</h3>
-                    <p class="bride-parents">Putri dari<br>Bapak [Father's Name] & Ibu [Mother's Name]</p>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Kharisma Fitri Hapsari" class="bride-photo">
+                    <h3 class="bride-name">Kharisma Fitri Hapsari</h3>
+                    <p class="bride-parents">Putri kedua dari<br>Bapak Muhammad Arief & Ibu Dewi</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://instagram.com" target="_blank" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://instagram.com" target="kharismafh" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -971,7 +695,7 @@
         <!-- Countdown Section -->
         <section id="countdown-section">
             <div class="section-title">Save The Date</div>
-            
+
             <div class="wedding-date">
                 <i class="fas fa-heart" style="color: var(--gold);"></i> 
                 Saturday, 1 August 2026
@@ -1005,17 +729,17 @@
         <!-- Location Section -->
         <section id="location">
             <div class="section-title">Wedding Location</div>
-            
+
             <div class="location-card">
                 <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px;"></i>
                 <h3 style="margin-bottom: 10px;">The Wedding Venue</h3>
                 <p style="margin-bottom: 20px; opacity: 0.9;">
-                    [Venue Name]<br>
-                    [Complete Address]<br>
-                    City, Postal Code
+                    Bebek & Ayam Goreng Pak Ndut<br>
+                    Jl. Bina Marga No.17, RT.04/RW.11, Baranangsiang, Kec. Bogor Timur<br>
+                    Kota Bogor, Jawa Barat 16143
                 </p>
-                
-                <a href="https://maps.app.goo.gl/CcrAnd8d7tPgqYw97" target="_blank" class="map-btn">
+
+                <a href="https://maps.app.goo.gl/fNeQmqoyhXD7vCHD6" target="_blank" class="map-btn">
                     <i class="fas fa-location-arrow"></i> Open in Google Maps
                 </a>
             </div>
@@ -1024,28 +748,28 @@
         <!-- Timeline Section - FIXED LAYOUT -->
         <section id="timeline">
             <div class="section-title">Our Journey</div>
-            
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-heart"></i> First Met</div>
-                        <div>The beautiful beginning of our story together</div>
+                        <div class="timeline-date"><i class="fas fa-heart"></i> First Met - January 2025</div>
+                        <div>We met as stranger, didn't really aware that we are closer than we think</div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-ring"></i> Proposal</div>
-                        <div>The moment we decided to spend forever together</div>
+                        <div class="timeline-date"><i class="fas fa-ring"></i>First Date - February 2025</div>
+                        <div>First time we met and listen to each other story</div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-gem"></i> Engagement</div>
+                        <div class="timeline-date"><i class="fas fa-gem"></i>Engagement - April 2026</div>
                         <div>Promised our hearts to each other with love</div>
                     </div>
                 </div>
@@ -1053,7 +777,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-church"></i> 1 August 2026</div>
+                        <div class="timeline-date"><i class="fas fa-church"></i>Wedding - August 2026</div>
                         <div>The Wedding Day - Celebrating our love with you</div>
                     </div>
                 </div>
@@ -1063,7 +787,7 @@
         <!-- Gallery Section -->
         <section id="gallery">
             <div class="section-title">Our Gallery</div>
-            
+
             <div class="gallery-container">
                 <div class="gallery-slide active">
                     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Gallery 1">
@@ -1097,25 +821,27 @@
         <!-- Thank You Section -->
         <section id="thank-you">
             <div class="section-title">Thank You</div>
-            
+
             <p style="margin-bottom: 20px; line-height: 1.8;">
                 Terima kasih atas kehadiran dan doa restu Bapak/Ibu/Saudara/i.<br>
                 Merupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
             </p>
 
             <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin: 30px 0;">
-                maleBride & femaleBride
+                Deni Eko Santoso & Kharisma Fitri Hapsari
             </p>
 
             <a href="https://wa.me/6287891712784" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Send Wishes
+            </a>
+			<a href="https://wa.me/6281288020195" target="_blank" class="whatsapp-btn">
                 <i class="fab fa-whatsapp"></i> Send Wishes
             </a>
         </section>
 
         <!-- Footer -->
         <footer>
-            <p>Made with <i class="fas fa-heart" style="color: var(--gold);"></i> by maleBride & femaleBride</p>
-            <p style="margin-top: 10px; font-size: 0.75rem;">© 2026 Wedding Invitation</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--gold);"></i> by Ourselves</p>
         </footer>
 
     </div>
@@ -1124,7 +850,7 @@
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const inviteeName = urlParams.get('name') || 'Bapak/Ibu/Saudara/i';
-        
+
         // Set invitee name
         document.getElementById('invitee-name').textContent = inviteeName;
 
@@ -1133,17 +859,18 @@
 
         // Open Invitation Function
         function openInvitation() {
-            // Play music IMMEDIATELY on user click (required for iOS/Chrome)
-            playMusic();
-
+			playMusic();
             const landing = document.getElementById('landing');
             const mainContent = document.getElementById('main-content');
-            
+
             landing.classList.add('hidden');
-            
+
             setTimeout(() => {
                 mainContent.classList.add('show');
                 window.scrollTo(0, 0);
+
+                // Try to play music (commented as requested)
+                playMusic();
             }, 800);
         }
 
@@ -1173,23 +900,23 @@
         // Add to Calendar
         function addToCalendar(e) {
             e.preventDefault();
-            
+
             const event = {
-                title: 'Wedding - maleBride & femaleBride',
+                title: 'Wedding - Deni Eko Santoso & Kharisma Fitri Hapsari',
                 date: '20260801T000000',
                 endDate: '20260801T235959',
-                details: 'Wedding Celebration of maleBride and femaleBride',
+                details: 'Wedding Celebration of Deni Eko Santoso and Kharisma Fitri Hapsari',
                 location: 'Wedding Venue'
             };
 
             const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.date}/${event.endDate}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
-            
+
             window.open(googleCalendarUrl, '_blank');
         }
 
         // Gallery Slider
         let slideIndex = 1;
-        
+
         function changeSlide(n) {
             showSlide(slideIndex += n);
         }
@@ -1201,18 +928,18 @@
         function showSlide(n) {
             let slides = document.getElementsByClassName('gallery-slide');
             let dots = document.getElementsByClassName('dot');
-            
+
             if (n > slides.length) slideIndex = 1;
             if (n < 1) slideIndex = slides.length;
-            
+
             for (let i = 0; i < slides.length; i++) {
                 slides[i].classList.remove('active');
             }
-            
+
             for (let i = 0; i < dots.length; i++) {
                 dots[i].classList.remove('active');
             }
-            
+
             slides[slideIndex - 1].classList.add('active');
             dots[slideIndex - 1].classList.add('active');
         }
@@ -1222,43 +949,36 @@
             changeSlide(1);
         }, 5000);
 
-        // Music Control
+        // Music Control (Commented functionality as requested)
         let isPlaying = false;
-        
+
         function toggleMusic() {
-            const musicControl = document.getElementById('musicToggle');
-            const audio = document.getElementById('bg-music');
-            
-            if (!audio) {
-                alert('Music feature is currently disabled. Uncomment the audio code in the HTML to enable.');
-                return;
-            }
-            
-            if (isPlaying) {
-                audio.pause();
-                musicControl.classList.remove('playing');
-                musicControl.innerHTML = '<i class="fas fa-music"></i>';
-            } else {
-                audio.play();
-                musicControl.classList.add('playing');
-                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
-            }
-            isPlaying = !isPlaying;
+    		const audio = document.getElementById('bg-music');
+    		const btn = document.getElementById('musicToggle');
+    		if (!audio) return;
+
+    		if (audio.paused) {
+        		audio.play();
+        		btn.classList.add('playing');
+        		btn.innerHTML = '<i class="fas fa-pause"></i>';
+   	 		} else {
+        		audio.pause();
+        		btn.classList.remove('playing');
+        		btn.innerHTML = '<i class="fas fa-music"></i>';
+    			}
         }
 
         function playMusic() {
-            const audio = document.getElementById('bg-music');
-            if (!audio) return;
+    		const audio = document.getElementById('bg-music');
+    		if (!audio) return;
 
-            audio.play().then(() => {
-                document.getElementById('musicToggle').classList.add('playing');
-                isPlaying = true;
-            }).catch(err => {
-                console.warn('Autoplay blocked:', err);
-            });
+    		audio.play().then(() => {
+       	 	document.getElementById('musicToggle').classList.add('playing');
+    		}).catch(err => {
+        	console.warn('Autoplay blocked:', err);
+        });
         }
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
