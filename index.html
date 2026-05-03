@@ -859,6 +859,7 @@
 
         // Open Invitation Function
         function openInvitation() {
+			playMusic();
             const landing = document.getElementById('landing');
             const mainContent = document.getElementById('main-content');
             
@@ -952,31 +953,31 @@
         let isPlaying = false;
         
         function toggleMusic() {
-            const musicControl = document.getElementById('musicToggle');
-            const audio = document.getElementById('bg-music');
-            
-            
-            if (isPlaying) {
-                audio.pause();
-                musicControl.classList.remove('playing');
-                musicControl.innerHTML = '<i class="fas fa-music"></i>';
-            } else {
-                audio.play();
-                musicControl.classList.add('playing');
-                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
-            }
-            isPlaying = !isPlaying;
-            
-            
-            // Visual feedback only since music is commented
-          //  alert('Music feature is currently disabled. Uncomment the audio code in the HTML to enable.');
+    		const audio = document.getElementById('bg-music');
+    		const btn = document.getElementById('musicToggle');
+    		if (!audio) return;
+
+    		if (audio.paused) {
+        		audio.play();
+        		btn.classList.add('playing');
+        		btn.innerHTML = '<i class="fas fa-pause"></i>';
+   	 		} else {
+        		audio.pause();
+        		btn.classList.remove('playing');
+        		btn.innerHTML = '<i class="fas fa-music"></i>';
+    			}
         }
 
         function playMusic() {
-            /*
-            const audio = document.getElementById('bg-music');
-            audio.play().catch(e => console.log('Autoplay prevented:', e));
-            */
+    		const audio = document.getElementById('bg-music');
+    		if (!audio) return;
+
+    		audio.play().then(() => {
+       	 	document.getElementById('musicToggle').classList.add('playing');
+    		}).catch(err => {
+        	console.warn('Autoplay blocked:', err);
+        // Fallback: keep toggle button ready for manual play
+    });
         }
 
         // Smooth scroll for anchor links
