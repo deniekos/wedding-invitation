@@ -118,16 +118,16 @@
         /* 🌿 Decorative Divider */
         .decorative-divider {
             text-align: center;
-            margin: 25px 0;
+            margin: 8px 0 0 0;
             position: relative;
-            height: 30px;
+            height: 10px;
         }
 
         .decorative-divider::before,
         .decorative-divider::after {
             content: '❦';
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1rem;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -304,9 +304,9 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--gold);
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
             width: 100%;
@@ -377,13 +377,14 @@
         .bride-container {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 0;
         }
 
         .bride-card {
             background: rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 30px;
+			margin-top: 0;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212,175,55,0.2);
@@ -391,6 +392,10 @@
             position: relative;
             overflow: hidden;
         }
+		
+		.bride-container > div[style*="font-size: 2rem"] {
+			margin: 10px 0; /* Reduced from default */
+		}
 
         .bride-card::before {
             content: '';
@@ -974,7 +979,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 480px) {
+        @media (max-width: 320px) {
             .bride-names {
                 font-size: 2rem;
             }
@@ -1085,8 +1090,8 @@
 <!-- Landing Section -->
 	<div id="landing">
 		<div class="landing-content">
-			<div class="invitee-name" id="invitee-display">Kepada Yth.</div>
-			<div class="invitee-name" id="invitee-name">Bapak/Ibu/Saudara/i</div>
+			<div class="invitee-name" id="invitee-display">To the esteemed</div>
+			<div class="invitee-name" id="invitee-name">Mr./Mrs.</div>
 
 			<!-- ✨ New: "The Wedding of" Text -->
 			<div class="wedding-of-text">The Wedding of</div>
@@ -1098,7 +1103,7 @@
 			</div>
 
 			<div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
-				<i class="fas fa-calendar-alt"></i> 1 Agustus 2026
+				<i class="fas fa-calendar-alt"></i> 1 August 2026
 			</div>
 
 			<button class="open-btn" onclick="openInvitation()">
@@ -1115,32 +1120,34 @@
             <div class="section-title">Our Story</div>
             <div class="decorative-divider"><span></span></div>
             <div class="quote-text">
-                "And among His signs is this, that He created for you mates from among yourselves, that ye may dwell in tranquillity with them, and He has put love and mercy between your (hearts): verily in that are signs for those who reflect."
+                "Another of His signs is that He created spouses from among yourselves for you to live with in tranquillity: He ordained love and kindness between you. There truly are signs in this for those who reflect."
             </div>
             <div style="margin-top: 20px; font-size: 0.9rem;">- Ar-Rum: 21</div>
         </section>
 
         <!-- Bride Info Section -->
         <section id="brides">
-            <div class="section-title">The Brides</div>
-            <div class="decorative-divider"><span></span></div>
 
             <div class="bride-container">
-                <div class="bride-card">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Deni Eko Santoso" class="bride-photo">
-                    <h3 class="bride-name">Deni Eko Santoso</h3>
-                    <p class="bride-parents">Putra pertama dari<br>Bapak Budi Santoso & Ibu Dina Permanasari</p>
-                    <div style="margin-top: 15px;">
-                        <a href="https://instagram.com" target="dekosantoso" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+			    <div class="section-title">The Groom</div>
+				<div class="decorative-divider"><span></span></div>
+					<div class="bride-card">
+						<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Deni Eko Santoso" class="bride-photo">
+						<h3 class="bride-name">Deni Eko Santoso</h3>
+						<p class="bride-parents">Son of<br>Mr. Budi Santoso & Mrs. Dina Permana Sari</p>
+						<div style="margin-top: 15px;">
+							<a href="https://instagram.com/" target="dekosantoso" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+						</div>
+					</div>
 
                 <div style="text-align: center; font-size: 2rem; color: var(--gold); position: relative; z-index: 1;">&</div>
+				<div class="section-title">The Bride</div>
+				<div class="decorative-divider"><span></span></div>
 
                 <div class="bride-card">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Kharisma Fitri Hapsari" class="bride-photo">
                     <h3 class="bride-name">Kharisma Fitri Hapsari</h3>
-                    <p class="bride-parents">Putri kedua dari<br>Bapak Muhammad Arief & Ibu Dewi</p>
+                    <p class="bride-parents">Daughter<br>Mr. Muhammad Arief & Mrs. Dewi Setyarini</p>
                     <div style="margin-top: 15px;">
                         <a href="https://instagram.com" target="kharismafh" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -1338,7 +1345,7 @@
 
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
-        const inviteeName = urlParams.get('name') || 'Bapak/Ibu/Saudara/i';
+        const inviteeName = urlParams.get('name') || 'Mr./Mrs.';
 
         // Set invitee name
         document.getElementById('invitee-name').textContent = inviteeName;
