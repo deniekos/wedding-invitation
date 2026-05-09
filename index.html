@@ -868,8 +868,72 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(37,211,102,0.4);
         }
+		
+		/* ✨ "The Wedding of" Styling */
+		.wedding-of-text {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.3rem;
+			color: var(--gold);
+			font-weight: 400;
+			font-style: italic;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			margin: 15px 0 25px 0;
+			position: relative;
+			display: inline-block;
+			animation: fadeInDown 1s ease 0.3s both;
+			text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		}
 
-        /* Footer */
+		/* Decorative flourishes on sides */
+		.wedding-of-text::before,
+		.wedding-of-text::after {
+			content: '✦';
+			color: var(--gold);
+			font-size: 0.9rem;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			opacity: 0.8;
+		}
+
+		.wedding-of-text::before {
+			left: -25px;
+		}
+
+		.wedding-of-text::after {
+			right: -25px;
+		}
+
+		/* Animation for entrance */
+		@keyframes fadeInDown {
+			from {
+				opacity: 0;
+				transform: translateY(-15px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+	}
+
+	/* Responsive adjustments */
+		@media (max-width: 480px) {
+		.wedding-of-text {
+			font-size: 1.1rem;
+			letter-spacing: 2px;
+			margin: 10px 0 20px 0;
+		}
+    
+		.wedding-of-text::before,
+		.wedding-of-text::after {
+			font-size: 0.8rem;
+			left: -20px;
+			right: -20px;
+		}
+	}
+
+		/* Footer */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -1018,26 +1082,30 @@
     </div>
 
     <!-- Landing Section -->
-    <div id="landing">
-        <div class="landing-content">
-            <div class="invitee-name" id="invitee-display">Kepada Yth.</div>
-            <div class="invitee-name" id="invitee-name">Bapak/Ibu/Saudara/i</div>
+<!-- Landing Section -->
+	<div id="landing">
+		<div class="landing-content">
+			<div class="invitee-name" id="invitee-display">Kepada Yth.</div>
+			<div class="invitee-name" id="invitee-name">Bapak/Ibu/Saudara/i</div>
 
-            <div class="bride-names">
-                <div>Deni Eko Santoso</div>
-                <div class="ampersand">&</div>
-                <div>Kharisma Fitri Hapsari</div>
-            </div>
+			<!-- ✨ New: "The Wedding of" Text -->
+			<div class="wedding-of-text">The Wedding of</div>
 
-            <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
-                <i class="fas fa-calendar-alt"></i> 1 Agustus 2026
-            </div>
+			<div class="bride-names">
+				<div>Deni Eko Santoso</div>
+			<div class="ampersand">&</div>
+				<div>Kharisma Fitri Hapsari</div>
+			</div>
 
-            <button class="open-btn" onclick="openInvitation()">
-                <i class="fas fa-envelope-open"></i> Click to Open Invitation
-            </button>
-        </div>
-    </div>
+			<div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
+				<i class="fas fa-calendar-alt"></i> 1 Agustus 2026
+			</div>
+
+			<button class="open-btn" onclick="openInvitation()">
+				<i class="fas fa-envelope-open"></i> Click to Open Invitation
+			</button>
+		</div>
+	</div>
 
     <!-- Main Content -->
     <div id="main-content">
