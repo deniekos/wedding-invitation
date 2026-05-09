@@ -36,7 +36,137 @@
             color: var(--white);
             overflow-x: hidden;
             line-height: 1.6;
+            position: relative;
         }
+
+        /* ✨ Background Decorations */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(10,92,58,0.3) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* ✨ Floating Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+        }
+
+        /* 🌸 Corner Floral Decorations */
+        .floral-corner {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .floral-corner.top-left {
+            top: 0;
+            left: 0;
+            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background-size: contain;
+        }
+
+        .floral-corner.top-right {
+            top: 0;
+            right: 0;
+            transform: scaleX(-1);
+            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background-size: contain;
+        }
+
+        .floral-corner.bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: scaleY(-1);
+            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background-size: contain;
+        }
+
+        .floral-corner.bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: scale(-1);
+            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background-size: contain;
+        }
+
+        /* 🌿 Decorative Divider */
+        .decorative-divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            height: 30px;
+        }
+
+        .decorative-divider::before,
+        .decorative-divider::after {
+            content: '❦';
+            color: var(--gold);
+            font-size: 1.2rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .decorative-divider::before { left: 0; }
+        .decorative-divider::after { right: 0; }
+
+        .decorative-divider span {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+
+        /* 🌹 Section Decorative Borders */
+        section {
+            padding: 60px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        section::before,
+        section::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 400px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+        }
+
+        section::before { top: 0; }
+        section::after { bottom: 0; }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
@@ -80,6 +210,27 @@
 
         .landing-content {
             animation: fadeInUp 1s ease;
+            position: relative;
+        }
+
+        /* ✨ Landing Decorative Ring */
+        .landing-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: 50%;
+            animation: pulse 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.8; }
         }
 
         .invitee-name {
@@ -88,6 +239,8 @@
             margin-bottom: 10px;
             font-weight: 300;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
         }
 
         .bride-names {
@@ -95,6 +248,8 @@
             margin: 20px 0;
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .ampersand {
@@ -116,13 +271,15 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
         }
 
         .open-btn:hover {
             background: var(--gold);
             color: var(--primary-green);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.4);
         }
 
         /* Main Content */
@@ -135,13 +292,6 @@
         #main-content.show {
             display: block;
             opacity: 1;
-        }
-
-        section {
-            padding: 60px 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
         }
 
         /* Decorative Elements */
@@ -163,12 +313,13 @@
         }
 
         .section-title::after {
-            content: '';
+            content: '✦ ✦ ✦';
             display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 10px auto;
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 8px;
+            margin: 10px auto 0;
+            opacity: 0.8;
         }
 
         /* Quote Section */
@@ -176,6 +327,21 @@
             background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
             text-align: center;
             font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ✨ Quote Background Pattern */
+        #quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         .quote-text {
@@ -185,6 +351,7 @@
             color: var(--cream);
             position: relative;
             padding: 0 20px;
+            z-index: 1;
         }
 
         .quote-text::before,
@@ -221,10 +388,30 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212,175,55,0.2);
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bride-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .bride-card:hover {
             transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .bride-card:hover::before {
+            opacity: 1;
         }
 
         .bride-photo {
@@ -234,25 +421,50 @@
             object-fit: cover;
             border: 4px solid var(--gold);
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .bride-name {
             font-size: 1.8rem;
             color: var(--gold);
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .bride-parents {
             font-size: 0.9rem;
             color: var(--cream);
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         /* Countdown Section */
         #countdown-section {
             background: linear-gradient(135deg, var(--primary-green) 0%, #082818 100%);
             text-align: center;
+            position: relative;
+        }
+
+        /* ✨ Countdown Hearts Animation */
+        #countdown-section::before {
+            content: '❤';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold);
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
         }
 
         .wedding-date {
@@ -275,6 +487,23 @@
             border-radius: 10px;
             padding: 15px;
             min-width: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
         }
 
         .countdown-number {
@@ -282,12 +511,16 @@
             font-weight: 700;
             color: var(--gold);
             display: block;
+            position: relative;
+            z-index: 1;
         }
 
         .countdown-label {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         .calendar-btn {
@@ -300,6 +533,23 @@
             border-radius: 25px;
             font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .calendar-btn:hover::before {
+            left: 100%;
         }
 
         .calendar-btn:hover {
@@ -314,6 +564,24 @@
             padding: 30px;
             text-align: center;
             border: 1px solid rgba(212,175,55,0.2);
+            position: relative;
+        }
+
+        .location-card::before {
+            content: '📍';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-green);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gold);
+            font-size: 1.2rem;
         }
 
         .map-btn {
@@ -333,9 +601,11 @@
         .map-btn:hover {
             background: var(--gold);
             color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212,175,55,0.3);
         }
 
-        /* Timeline Section - FIXED */
+        /* Timeline Section */
         #timeline {
             position: relative;
         }
@@ -346,7 +616,6 @@
             margin-left: 15px;
         }
 
-        /* Vertical line - left aligned for mobile */
         .timeline::before {
             content: '';
             position: absolute;
@@ -355,6 +624,7 @@
             width: 2px;
             height: calc(100% - 20px);
             background: linear-gradient(to bottom, var(--gold), var(--primary-green));
+            box-shadow: 0 0 10px rgba(212,175,55,0.3);
         }
 
         .timeline-item {
@@ -364,7 +634,6 @@
             min-height: 50px;
         }
 
-        /* Timeline dot - positioned on the vertical line */
         .timeline-dot {
             position: absolute;
             left: 4px;
@@ -375,7 +644,8 @@
             border-radius: 50%;
             border: 3px solid var(--primary-green);
             z-index: 2;
-            box-shadow: 0 0 0 2px rgba(212,175,55,0.3);
+            box-shadow: 0 0 0 2px rgba(212,175,55,0.3), 0 0 15px rgba(212,175,55,0.5);
+            animation: pulse 2s infinite ease-in-out;
         }
 
         .timeline-content {
@@ -384,12 +654,29 @@
             border-radius: 12px;
             border: 1px solid rgba(212,175,55,0.2);
             text-align: left;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .timeline-content:hover {
             transform: translateX(5px);
             border-color: var(--gold);
+        }
+
+        .timeline-content:hover::before {
+            opacity: 1;
         }
 
         .timeline-date {
@@ -420,6 +707,18 @@
             overflow: hidden;
             border-radius: 15px;
             background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(212,175,55,0.3);
+        }
+
+        .gallery-container::before {
+            content: '📷';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--gold);
+            font-size: 1.2rem;
+            opacity: 0.5;
+            z-index: 5;
         }
 
         .gallery-slide {
@@ -437,13 +736,23 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide.active img {
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1.05); }
+            to { transform: scale(1); }
         }
 
         .gallery-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(212,175,55,0.8);
+            background: rgba(212,175,55,0.9);
             color: var(--primary-green);
             border: none;
             width: 40px;
@@ -453,11 +762,15 @@
             font-size: 1.2rem;
             transition: all 0.3s;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-nav:hover {
             background: var(--gold);
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 15px rgba(212,175,55,0.4);
         }
 
         .gallery-nav.prev { left: 10px; }
@@ -482,19 +795,48 @@
         .dot.active {
             background: var(--gold);
             transform: scale(1.2);
+            box-shadow: 0 0 10px var(--gold);
         }
 
         /* Thank You Section */
         #thank-you {
             text-align: center;
             background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ✨ Thank You Floating Hearts */
+        #thank-you::before {
+            content: '💕';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            animation: floatHeart 4s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        #thank-you::after {
+            content: '💕';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            animation: floatHeart 4s infinite ease-in-out reverse;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
         }
 
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 20px;
+            margin: 10px;
             padding: 15px 35px;
             background: #25D366;
             color: white;
@@ -503,6 +845,23 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .whatsapp-btn:hover::before {
+            left: 100%;
         }
 
         .whatsapp-btn:hover {
@@ -518,6 +877,19 @@
             font-size: 0.85rem;
             color: var(--cream);
             opacity: 0.8;
+            position: relative;
+        }
+
+        footer::before {
+            content: '✦';
+            color: var(--gold);
+            margin-right: 8px;
+        }
+
+        footer::after {
+            content: '✦';
+            color: var(--gold);
+            margin-left: 8px;
         }
 
         /* Animations */
@@ -577,6 +949,11 @@
             .timeline-item {
                 padding-left: 38px;
             }
+
+            .floral-corner {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         /* Music Control */
@@ -593,12 +970,13 @@
             justify-content: center;
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.5);
             transition: all 0.3s;
         }
 
         .music-control:hover {
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(212,175,55,0.6);
         }
 
         .music-control.playing {
@@ -619,15 +997,23 @@
 </head>
 <body>
 
-    <!-- Audio Element (Commented as requested) -->
+    <!-- ✨ Background Sparkles (Generated by JS) -->
+    <div id="sparkles-container"></div>
 
-    <audio id="bg-music" loop>
+    <!-- 🌸 Corner Decorations -->
+    <div class="floral-corner top-left"></div>
+    <div class="floral-corner top-right"></div>
+    <div class="floral-corner bottom-left"></div>
+    <div class="floral-corner bottom-right"></div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop preload="auto">
         <source src="wedding.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Music Control Button -->
-    <div class="music-control" id="musicToggle" onclick="toggleMusic()">
+    <div class="music-control" id="musicToggle" onclick="toggleMusic()" title="Toggle Music">
         <i class="fas fa-music"></i>
     </div>
 
@@ -659,6 +1045,7 @@
         <!-- Quote Section -->
         <section id="quote">
             <div class="section-title">Our Story</div>
+            <div class="decorative-divider"><span></span></div>
             <div class="quote-text">
                 "And among His signs is this, that He created for you mates from among yourselves, that ye may dwell in tranquillity with them, and He has put love and mercy between your (hearts): verily in that are signs for those who reflect."
             </div>
@@ -668,6 +1055,7 @@
         <!-- Bride Info Section -->
         <section id="brides">
             <div class="section-title">The Brides</div>
+            <div class="decorative-divider"><span></span></div>
 
             <div class="bride-container">
                 <div class="bride-card">
@@ -679,7 +1067,7 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; font-size: 2rem; color: var(--gold);">&</div>
+                <div style="text-align: center; font-size: 2rem; color: var(--gold); position: relative; z-index: 1;">&</div>
 
                 <div class="bride-card">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Kharisma Fitri Hapsari" class="bride-photo">
@@ -695,6 +1083,7 @@
         <!-- Countdown Section -->
         <section id="countdown-section">
             <div class="section-title">Save The Date</div>
+            <div class="decorative-divider"><span></span></div>
 
             <div class="wedding-date">
                 <i class="fas fa-heart" style="color: var(--gold);"></i> 
@@ -729,9 +1118,10 @@
         <!-- Location Section -->
         <section id="location">
             <div class="section-title">Wedding Location</div>
+            <div class="decorative-divider"><span></span></div>
 
             <div class="location-card">
-                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px;"></i>
+                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px; margin-top: 10px;"></i>
                 <h3 style="margin-bottom: 10px;">The Wedding Venue</h3>
                 <p style="margin-bottom: 20px; opacity: 0.9;">
                     Bebek & Ayam Goreng Pak Ndut<br>
@@ -745,9 +1135,10 @@
             </div>
         </section>
 
-        <!-- Timeline Section - FIXED LAYOUT -->
+        <!-- Timeline Section -->
         <section id="timeline">
             <div class="section-title">Our Journey</div>
+            <div class="decorative-divider"><span></span></div>
 
             <div class="timeline">
                 <div class="timeline-item">
@@ -787,6 +1178,7 @@
         <!-- Gallery Section -->
         <section id="gallery">
             <div class="section-title">Our Gallery</div>
+            <div class="decorative-divider"><span></span></div>
 
             <div class="gallery-container">
                 <div class="gallery-slide active">
@@ -821,6 +1213,7 @@
         <!-- Thank You Section -->
         <section id="thank-you">
             <div class="section-title">Thank You</div>
+            <div class="decorative-divider"><span></span></div>
 
             <p style="margin-bottom: 20px; line-height: 1.8;">
                 Terima kasih atas kehadiran dan doa restu Bapak/Ibu/Saudara/i.<br>
@@ -831,12 +1224,14 @@
                 Deni Eko Santoso & Kharisma Fitri Hapsari
             </p>
 
-            <a href="https://wa.me/6287891712784" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Send Wishes
-            </a>
-			<a href="https://wa.me/6281288020195" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Send Wishes
-            </a>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px;">
+                <a href="https://wa.me/6287891712784" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Deni
+                </a>
+                <a href="https://wa.me/6281288020195" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Kharisma
+                </a>
+            </div>
         </section>
 
         <!-- Footer -->
@@ -847,6 +1242,32 @@
     </div>
 
     <script>
+        // ✨ Generate Floating Sparkles
+        function createSparkles() {
+            const container = document.getElementById('sparkles-container');
+            const sparkleCount = 15;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random position
+                sparkle.style.left = Math.random() * 100 + 'vw';
+                sparkle.style.top = Math.random() * 100 + 'vh';
+                
+                // Random animation delay and duration
+                sparkle.style.animationDelay = Math.random() * 6 + 's';
+                sparkle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                
+                // Random size
+                const size = 2 + Math.random() * 4;
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+                
+                container.appendChild(sparkle);
+            }
+        }
+
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const inviteeName = urlParams.get('name') || 'Bapak/Ibu/Saudara/i';
@@ -859,7 +1280,9 @@
 
         // Open Invitation Function
         function openInvitation() {
-			playMusic();
+            // Play music IMMEDIATELY on user click
+            playMusic();
+
             const landing = document.getElementById('landing');
             const mainContent = document.getElementById('main-content');
 
@@ -868,9 +1291,6 @@
             setTimeout(() => {
                 mainContent.classList.add('show');
                 window.scrollTo(0, 0);
-
-                // Try to play music (commented as requested)
-                playMusic();
             }, 800);
         }
 
@@ -890,7 +1310,7 @@
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<h2 style="color: var(--gold);">The Big Day is Here!</h2>';
+                document.getElementById('countdown').innerHTML = '<h2 style="color: var(--gold);">The Big Day is Here! ❤</h2>';
             }
         }
 
@@ -906,7 +1326,7 @@
                 date: '20260801T000000',
                 endDate: '20260801T235959',
                 details: 'Wedding Celebration of Deni Eko Santoso and Kharisma Fitri Hapsari',
-                location: 'Wedding Venue'
+                location: 'Bebek & Ayam Goreng Pak Ndut, Jl. Bina Marga No.17, Bogor'
             };
 
             const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.date}/${event.endDate}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
@@ -949,36 +1369,38 @@
             changeSlide(1);
         }, 5000);
 
-        // Music Control (Commented functionality as requested)
-        let isPlaying = false;
-
+        // Music Functions
         function toggleMusic() {
-    		const audio = document.getElementById('bg-music');
-    		const btn = document.getElementById('musicToggle');
-    		if (!audio) return;
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('musicToggle');
+            if (!audio) return;
 
-    		if (audio.paused) {
-        		audio.play();
-        		btn.classList.add('playing');
-        		btn.innerHTML = '<i class="fas fa-pause"></i>';
-   	 		} else {
-        		audio.pause();
-        		btn.classList.remove('playing');
-        		btn.innerHTML = '<i class="fas fa-music"></i>';
-    			}
+            if (audio.paused) {
+                audio.play();
+                btn.classList.add('playing');
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                btn.classList.remove('playing');
+                btn.innerHTML = '<i class="fas fa-music"></i>';
+            }
         }
 
         function playMusic() {
-    		const audio = document.getElementById('bg-music');
-    		if (!audio) return;
+            const audio = document.getElementById('bg-music');
+            if (!audio) return;
 
-    		audio.play().then(() => {
-       	 	document.getElementById('musicToggle').classList.add('playing');
-    		}).catch(err => {
-        	console.warn('Autoplay blocked:', err);
-        });
+            audio.play().then(() => {
+                document.getElementById('musicToggle').classList.add('playing');
+            }).catch(err => {
+                console.warn('Autoplay blocked:', err);
+                // Show subtle hint to user
+                const btn = document.getElementById('musicToggle');
+                btn.title = 'Tap to play music';
+            });
         }
 
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1010,6 +1432,11 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'all 0.6s ease';
             observer.observe(section);
+        });
+
+        // Initialize decorations
+        document.addEventListener('DOMContentLoaded', () => {
+            createSparkles();
         });
     </script>
 </body>
