@@ -9,25 +9,47 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        :root {
+            --primary-green: #064028;
+            --deep-green: #042d1c;
+            --light-green: #0a5c3a;
+            --gold: #d4af37;
+            --gold-light: #e8c84a;
+            --gold-dark: #b8941f;
+            --cream: #f5f5dc;
+            --cream-light: #fafaf0;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border-gold: rgba(212, 175, 55, 0.25);
+            --border-gold-hover: rgba(212, 175, 55, 0.6);
+            --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.15);
+            --shadow-gold-hover: 0 8px 30px rgba(212, 175, 55, 0.3);
+            --section-max-width: 620px;
+            --section-padding-desktop: 70px 24px;
+            --section-padding-tablet: 55px 20px;
+            --section-padding-mobile: 45px 16px;
+            --card-radius: 18px;
+            --card-radius-sm: 14px;
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-green: #064028;
-            --light-green: #0a5c3a;
-            --gold: #d4af37;
-            --cream: #f5f5dc;
-            --white: #ffffff;
-            --dark: #1a1a1a;
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -35,24 +57,61 @@
             background-color: var(--primary-green);
             color: var(--white);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
             position: relative;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ✨ Background Decorations */
+        /* ✨ Rich Multi-Layer Background */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(10,92,58,0.3) 0%, transparent 70%);
+            inset: 0;
+            background:
+                /* Deep base gradient */
+                linear-gradient(180deg,
+                    #042415 0%,
+                    #064028 15%,
+                    #073d26 30%,
+                    #064028 50%,
+                    #052f1e 70%,
+                    #042415 100%) fixed,
+                /* Warm gold glows */
+                radial-gradient(ellipse at 15% 85%, rgba(212, 175, 55, 0.1) 0%, transparent 55%) fixed,
+                radial-gradient(ellipse at 78% 12%, rgba(212, 175, 55, 0.09) 0%, transparent 50%) fixed,
+                radial-gradient(ellipse at 50% 45%, rgba(232, 200, 74, 0.05) 0%, transparent 65%) fixed,
+                radial-gradient(ellipse at 30% 55%, rgba(10, 92, 58, 0.4) 0%, transparent 60%) fixed,
+                /* Subtle texture overlay */
+                repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.003) 2px,
+                    rgba(255, 255, 255, 0.003) 4px) fixed;
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        /* Subtle gold particle texture */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 12% 18%, rgba(212, 175, 55, 0.5), transparent),
+                radial-gradient(1px 1px at 25% 35%, rgba(212, 175, 55, 0.4), transparent),
+                radial-gradient(1.5px 1.5px at 40% 62%, rgba(212, 175, 55, 0.35), transparent),
+                radial-gradient(1px 1px at 55% 22%, rgba(212, 175, 55, 0.45), transparent),
+                radial-gradient(1.5px 1.5px at 68% 48%, rgba(212, 175, 55, 0.3), transparent),
+                radial-gradient(1px 1px at 80% 72%, rgba(212, 175, 55, 0.4), transparent),
+                radial-gradient(1px 1px at 92% 15%, rgba(212, 175, 55, 0.35), transparent),
+                radial-gradient(1.5px 1.5px at 8% 78%, rgba(212, 175, 55, 0.3), transparent),
+                radial-gradient(1px 1px at 35% 85%, rgba(212, 175, 55, 0.4), transparent),
+                radial-gradient(1px 1px at 72% 8%, rgba(212, 175, 55, 0.35), transparent);
             pointer-events: none;
             z-index: -2;
+            opacity: 0.7;
         }
 
         /* ✨ Floating Sparkles */
@@ -64,30 +123,47 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: -1;
-            animation: float 6s infinite ease-in-out;
-            opacity: 0.6;
-            box-shadow: 0 0 10px var(--gold);
+            animation: floatSparkle 6s infinite ease-in-out;
+            opacity: 0;
+            box-shadow: 0 0 8px var(--gold-light), 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-            50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+        @keyframes floatSparkle {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-28px) translateX(14px) scale(1.6);
+                opacity: 1;
+            }
+            85% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
         }
 
         /* 🌸 Corner Floral Decorations */
         .floral-corner {
             position: fixed;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.4;
+            opacity: 0.35;
+            transition: opacity 0.6s ease;
         }
 
         .floral-corner.top-left {
             top: 0;
             left: 0;
-            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23e8c84a' opacity='0.6'/%3E%3Ccircle cx='30' cy='8' r='2' fill='%23e8c84a' opacity='0.5'/%3E%3C/svg%3E") no-repeat top left;
             background-size: contain;
         }
 
@@ -95,7 +171,7 @@
             top: 0;
             right: 0;
             transform: scaleX(-1);
-            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23e8c84a' opacity='0.6'/%3E%3C/svg%3E") no-repeat top left;
             background-size: contain;
         }
 
@@ -103,7 +179,7 @@
             bottom: 0;
             left: 0;
             transform: scaleY(-1);
-            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23e8c84a' opacity='0.6'/%3E%3C/svg%3E") no-repeat top left;
             background-size: contain;
         }
 
@@ -111,95 +187,123 @@
             bottom: 0;
             right: 0;
             transform: scale(-1);
-            background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3C/svg%3E") no-repeat top left;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23d4af37' d='M20,20 Q40,5 60,20 T100,20 L100,0 L0,0 L0,100 L20,100 Q20,60 20,20 Z'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23e8c84a' opacity='0.6'/%3E%3C/svg%3E") no-repeat top left;
             background-size: contain;
         }
 
         /* 🌿 Decorative Divider */
         .decorative-divider {
             text-align: center;
-            margin: 0 0 16px 0;
+            margin: 0 0 18px 0;
             position: relative;
-            height: 10px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
         .decorative-divider::before,
         .decorative-divider::after {
             content: '❦';
             color: var(--gold);
-            font-size: 1rem;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            flex-shrink: 0;
         }
-
-        .decorative-divider::before { left: 0; }
-        .decorative-divider::after { right: 0; }
 
         .decorative-divider span {
             display: inline-block;
-            width: 60px;
+            width: 70px;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            vertical-align: middle;
-            margin: 0 10px;
+            flex-shrink: 0;
+            border-radius: 1px;
         }
 
-        /* 🌹 Section Decorative Borders */
+        /* 🌹 Sections */
         section {
-            padding: 60px 20px;
-            max-width: 600px;
+            padding: var(--section-padding-desktop);
+            max-width: var(--section-max-width);
             margin: 0 auto;
             position: relative;
         }
 
+        /* Subtle section separator lines */
         section::before,
         section::after {
             content: '';
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            max-width: 400px;
+            width: 75%;
+            max-width: 380px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+            border-radius: 1px;
         }
 
-        section::before { top: 0; }
-        section::after { bottom: 0; }
+        section::before {
+            top: 0;
+        }
+        section::after {
+            bottom: 0;
+        }
 
-        h1, h2, h3, h4 {
+        /* Remove separators from first and last visible sections */
+        #quote::before,
+        #thank-you::after {
+            display: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
         }
 
         /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 7px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--primary-green);
+            background: var(--deep-green);
+            border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold-dark), var(--gold-light));
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
             background: var(--gold);
-            border-radius: 4px;
         }
 
-        /* Landing Section */
+        /* ================================================================
+           LANDING SECTION
+           ================================================================ */
         #landing {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            height: 100dvh;
+            background:
+                radial-gradient(ellipse at 50% 35%, rgba(10, 92, 58, 0.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 25%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                linear-gradient(160deg, #042415 0%, #064028 35%, #052f1e 65%, #042415 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.8s ease, visibility 0.8s;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
         }
 
         #landing.hidden {
@@ -211,6 +315,8 @@
         .landing-content {
             animation: fadeInUp 1s ease;
             position: relative;
+            max-width: 420px;
+            width: 100%;
         }
 
         /* ✨ Landing Decorative Ring */
@@ -220,69 +326,166 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
-            border: 2px solid rgba(212,175,55,0.3);
+            width: 290px;
+            height: 290px;
+            border: 2px solid rgba(212, 175, 55, 0.25);
             border-radius: 50%;
-            animation: pulse 3s infinite ease-in-out;
+            animation: pulseRing 3.5s infinite ease-in-out;
             pointer-events: none;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.8; }
+        .landing-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            height: 260px;
+            border: 1px dashed rgba(212, 175, 55, 0.15);
+            border-radius: 50%;
+            animation: pulseRing 3.5s infinite ease-in-out 0.5s;
+            pointer-events: none;
+        }
+
+        @keyframes pulseRing {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.06);
+                opacity: 0.9;
+            }
         }
 
         .invitee-name {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 10px;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--gold-light);
+            margin-bottom: 6px;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             position: relative;
             z-index: 2;
         }
 
+        #invitee-display {
+            opacity: 0.75;
+            font-size: clamp(0.85rem, 2.2vw, 1rem);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        #invitee-name {
+            font-weight: 500;
+            color: var(--gold);
+            font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+            margin-bottom: 8px;
+        }
+
+        .wedding-of-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2.8vw, 1.3rem);
+            color: var(--gold);
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin: 18px 0 28px 0;
+            position: relative;
+            display: inline-block;
+            animation: fadeInDown 0.9s ease 0.3s both;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+            line-height: 1.5;
+        }
+
+        .wedding-of-text::before,
+        .wedding-of-text::after {
+            content: '✦';
+            color: var(--gold);
+            font-size: 0.75rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .wedding-of-text::before {
+            left: -28px;
+        }
+        .wedding-of-text::after {
+            right: -28px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .bride-names {
-            font-size: 2.5rem;
-            margin: 20px 0;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            margin: 18px 0;
             font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
             position: relative;
             z-index: 2;
+            line-height: 1.3;
         }
 
         .ampersand {
             color: var(--gold);
             font-style: italic;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 400;
+            display: block;
+            margin: 2px 0;
         }
 
         .open-btn {
-            margin-top: 40px;
-            padding: 15px 40px;
+            margin-top: 36px;
+            padding: 14px 38px;
             background: transparent;
             border: 2px solid var(--gold);
             color: var(--gold);
             font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             border-radius: 30px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-smooth);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             position: relative;
             z-index: 2;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            white-space: nowrap;
         }
 
         .open-btn:hover {
             background: var(--gold);
             color: var(--primary-green);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.4);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 28px rgba(212, 175, 55, 0.5);
+            border-color: var(--gold-light);
         }
 
-        /* Main Content */
+        .open-btn:active {
+            transform: translateY(-1px) scale(0.97);
+            transition: all 0.1s ease;
+        }
+
+        /* ================================================================
+           MAIN CONTENT
+           ================================================================ */
         #main-content {
             display: none;
             opacity: 0;
@@ -292,110 +495,132 @@
         #main-content.show {
             display: block;
             opacity: 1;
+            animation: fadeInContent 1s ease forwards;
         }
 
-        /* Decorative Elements */
-        .floral-divider {
-            text-align: center;
-            margin: 30px 0;
-            color: var(--gold);
-            font-size: 1.5rem;
+        @keyframes fadeInContent {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-title {
             text-align: center;
-            font-size: 1.6rem;
+            font-size: clamp(1.4rem, 3.5vw, 1.7rem);
             color: var(--gold);
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             position: relative;
-            display: inline-block;
+            display: block;
             width: 100%;
+            letter-spacing: 0.03em;
         }
 
         .section-title::after {
             content: '✦ ✦ ✦';
             display: block;
             color: var(--gold);
-            font-size: 0.8rem;
-            letter-spacing: 8px;
+            font-size: 0.7rem;
+            letter-spacing: 10px;
             margin: 10px auto 0;
-            opacity: 0.8;
+            opacity: 0.65;
         }
 
-        /* Quote Section */
+        /* ================================================================
+           QUOTE SECTION
+           ================================================================ */
         #quote {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(10, 92, 58, 0.5) 0%, transparent 70%),
+                linear-gradient(160deg, var(--light-green) 0%, var(--primary-green) 50%, var(--deep-green) 100%);
             text-align: center;
             font-style: italic;
             position: relative;
             overflow: hidden;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 8px;
         }
 
-        /* ✨ Quote Background Pattern */
         #quote::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.6;
             pointer-events: none;
+            border-radius: 0 0 30px 30px;
         }
 
         .quote-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: var(--cream);
+            font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+            line-height: 1.9;
+            color: var(--cream-light);
             position: relative;
-            padding: 0 20px;
+            padding: 0 16px;
             z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
         }
 
         .quote-text::before,
         .quote-text::after {
             content: '"';
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--gold);
             position: absolute;
-            opacity: 0.5;
+            opacity: 0.4;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
         }
 
         .quote-text::before {
-            top: -20px;
-            left: 0;
+            top: -18px;
+            left: -4px;
         }
-
         .quote-text::after {
-            bottom: -40px;
-            right: 0;
+            bottom: -38px;
+            right: -4px;
         }
 
-        /* Bride Info Section */
+        /* ================================================================
+           BRIDE INFO SECTION
+           ================================================================ */
         .bride-container {
             display: flex;
             flex-direction: column;
             gap: 0;
         }
 
-        .bride-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 30px;
-			margin-top: 0;
+        .bride-separator {
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212,175,55,0.2);
-            transition: transform 0.3s ease;
+            font-size: 2rem;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+            margin: 12px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .bride-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 32px 24px;
+            margin-top: 0;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-gold);
+            transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
             position: relative;
             overflow: hidden;
         }
-		
-		.bride-container > div[style*="font-size: 2rem"] {
-			margin: 10px 0; /* Reduced from default */
-		}
 
         .bride-card::before {
             content: '';
@@ -404,15 +629,16 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-smooth);
             pointer-events: none;
         }
 
         .bride-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
+            transform: translateY(-4px);
+            border-color: var(--border-gold-hover);
+            box-shadow: var(--shadow-gold-hover);
         }
 
         .bride-card:hover::before {
@@ -420,19 +646,25 @@
         }
 
         .bride-photo {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--gold);
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.2);
+            margin-bottom: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 25px rgba(212, 175, 55, 0.25);
             position: relative;
             z-index: 1;
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .bride-card:hover .bride-photo {
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 35px rgba(212, 175, 55, 0.4);
         }
 
         .bride-name {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3.5vw, 1.8rem);
             color: var(--gold);
             margin-bottom: 10px;
             position: relative;
@@ -442,58 +674,109 @@
         .bride-parents {
             font-size: 0.9rem;
             color: var(--cream);
-            opacity: 0.9;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .bride-social {
+            margin-top: 14px;
             position: relative;
             z-index: 1;
         }
 
-        /* Countdown Section */
-        #countdown-section {
-            background: linear-gradient(135deg, var(--primary-green) 0%, #082818 100%);
-            text-align: center;
-            position: relative;
+        .bride-social a {
+            color: var(--gold);
+            margin: 0 10px;
+            font-size: 1.15rem;
+            transition: color var(--transition-smooth), transform var(--transition-bounce);
+            display: inline-block;
         }
 
-        /* ✨ Countdown Hearts Animation */
+        .bride-social a:hover {
+            color: var(--gold-light);
+            transform: scale(1.2);
+        }
+
+        /* ================================================================
+           COUNTDOWN SECTION
+           ================================================================ */
+        #countdown-section {
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(10, 92, 58, 0.5) 0%, transparent 60%),
+                linear-gradient(160deg, var(--primary-green) 0%, #082818 50%, var(--deep-green) 100%);
+            text-align: center;
+            position: relative;
+            border-radius: 30px 30px 0 0;
+            margin-top: 8px;
+        }
+
         #countdown-section::before {
             content: '❤';
             position: absolute;
-            top: 10px;
+            top: 14px;
             left: 50%;
             transform: translateX(-50%);
             color: var(--gold);
-            font-size: 1.5rem;
-            animation: heartbeat 1.5s infinite ease-in-out;
-            opacity: 0.8;
+            font-size: 1.4rem;
+            animation: heartbeat 1.6s infinite ease-in-out;
+            opacity: 0.75;
+            z-index: 1;
         }
 
         @keyframes heartbeat {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+            30% {
+                transform: translateX(-50%) scale(1.25);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.1);
+            }
+            70% {
+                transform: translateX(-50%) scale(1.25);
+            }
         }
 
         .wedding-date {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: var(--gold);
+            font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+            margin-bottom: 12px;
+            color: var(--gold-light);
+            letter-spacing: 0.03em;
+        }
+
+        .wedding-time {
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            color: var(--cream);
+            opacity: 0.85;
+            margin-bottom: 4px;
         }
 
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            gap: clamp(10px, 2vw, 16px);
+            margin: 28px 0;
             flex-wrap: wrap;
         }
 
         .countdown-box {
-            background: rgba(212,175,55,0.1);
-            border: 1px solid var(--gold);
-            border-radius: 10px;
-            padding: 15px;
-            min-width: 70px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--card-radius-sm);
+            padding: clamp(10px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
+            min-width: clamp(58px, 14vw, 75px);
             position: relative;
             overflow: hidden;
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-gold);
         }
 
         .countdown-box::after {
@@ -503,43 +786,52 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
-            animation: shimmer 2s infinite;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            animation: shimmer 2.5s infinite;
         }
 
         @keyframes shimmer {
-            100% { left: 100%; }
+            100% {
+                left: 100%;
+            }
         }
 
         .countdown-number {
-            font-size: 2rem;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
             font-weight: 700;
             color: var(--gold);
             display: block;
             position: relative;
             z-index: 1;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.1;
         }
 
         .countdown-label {
-            font-size: 0.8rem;
+            font-size: clamp(0.65rem, 1.6vw, 0.8rem);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             position: relative;
             z-index: 1;
+            color: var(--cream);
+            opacity: 0.8;
+            margin-top: 2px;
         }
 
         .calendar-btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 12px 30px;
+            padding: 13px 32px;
             background: var(--gold);
             color: var(--primary-green);
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 28px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            transition: all var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.03em;
         }
 
         .calendar-btn::before {
@@ -549,7 +841,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
         }
 
@@ -558,109 +850,166 @@
         }
 
         .calendar-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+            transform: scale(1.06);
+            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.5);
+            color: var(--deep-green);
         }
 
-        /* Location Section */
+        .calendar-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ================================================================
+           LOCATION SECTION
+           ================================================================ */
         .location-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 30px;
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: 32px 22px;
             text-align: center;
-            border: 1px solid rgba(212,175,55,0.2);
+            border: 1px solid var(--border-gold);
             position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .location-card:hover {
+            border-color: var(--border-gold-hover);
+            box-shadow: var(--shadow-gold);
         }
 
         .location-card::before {
             content: '📍';
             position: absolute;
-            top: -15px;
+            top: -16px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--primary-green);
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid var(--gold);
+            font-size: 1.1rem;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .location-card h3 {
+            margin-bottom: 10px;
+            margin-top: 14px;
+            color: var(--gold-light);
             font-size: 1.2rem;
+        }
+
+        .location-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .map-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 20px;
-            padding: 12px 30px;
+            margin-top: 16px;
+            padding: 13px 30px;
             background: transparent;
             border: 2px solid var(--gold);
             color: var(--gold);
             text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: 28px;
+            transition: all var(--transition-smooth);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
         }
 
         .map-btn:hover {
             background: var(--gold);
             color: var(--primary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold-light);
         }
 
-        /* Timeline Section */
+        .map-btn:active {
+            transform: translateY(-1px) scale(0.97);
+        }
+
+        /* ================================================================
+           TIMELINE SECTION
+           ================================================================ */
         #timeline {
             position: relative;
         }
 
         .timeline {
             position: relative;
-            padding: 10px 0 30px 0;
-            margin-left: 15px;
+            padding: 8px 0 28px 0;
+            margin-left: 14px;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 12px;
-            top: 10px;
+            left: 11px;
+            top: 8px;
             width: 2px;
-            height: calc(100% - 20px);
-            background: linear-gradient(to bottom, var(--gold), var(--primary-green));
-            box-shadow: 0 0 10px rgba(212,175,55,0.3);
+            height: calc(100% - 16px);
+            background: linear-gradient(to bottom, var(--gold), rgba(212, 175, 55, 0.2), var(--gold));
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+            border-radius: 1px;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 35px;
-            padding-left: 45px;
+            margin-bottom: 32px;
+            padding-left: 44px;
             min-height: 50px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
         .timeline-dot {
             position: absolute;
-            left: 4px;
-            top: 8px;
+            left: 3px;
+            top: 7px;
             width: 18px;
             height: 18px;
             background: var(--gold);
             border-radius: 50%;
             border: 3px solid var(--primary-green);
             z-index: 2;
-            box-shadow: 0 0 0 2px rgba(212,175,55,0.3), 0 0 15px rgba(212,175,55,0.5);
-            animation: pulse 2s infinite ease-in-out;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), 0 0 18px rgba(212, 175, 55, 0.5);
+            animation: pulseDot 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseDot {
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), 0 0 18px rgba(212, 175, 55, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.15), 0 0 28px rgba(212, 175, 55, 0.7);
+            }
         }
 
         .timeline-content {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.04);
             padding: 18px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: var(--card-radius-sm);
+            border: 1px solid var(--border-gold);
             text-align: left;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
             position: relative;
+            overflow: hidden;
         }
 
         .timeline-content::before {
@@ -672,12 +1021,14 @@
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-smooth);
+            border-radius: 2px;
         }
 
         .timeline-content:hover {
-            transform: translateX(5px);
-            border-color: var(--gold);
+            transform: translateX(4px);
+            border-color: var(--border-gold-hover);
+            box-shadow: var(--shadow-gold);
         }
 
         .timeline-content:hover::before {
@@ -688,48 +1039,59 @@
             color: var(--gold);
             font-weight: 600;
             font-size: 0.95rem;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
+            letter-spacing: 0.02em;
         }
 
         .timeline-date i {
             font-size: 0.8rem;
+            opacity: 0.8;
         }
 
         .timeline-content p,
         .timeline-content div:not(.timeline-date) {
-            font-size: 0.95rem;
-            color: var(--cream);
-            opacity: 0.95;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            color: var(--cream-light);
+            opacity: 0.9;
+            line-height: 1.55;
         }
 
-        /* Gallery Section */
+        /* ================================================================
+           GALLERY SECTION
+           ================================================================ */
         .gallery-container {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            background: rgba(0,0,0,0.3);
-            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: var(--card-radius);
+            background: rgba(0, 0, 0, 0.35);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 4/3;
+            max-height: 440px;
+            min-height: 280px;
         }
 
         .gallery-container::before {
             content: '📷';
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 14px;
             color: var(--gold);
-            font-size: 1.2rem;
-            opacity: 0.5;
+            font-size: 1.1rem;
+            opacity: 0.45;
             z-index: 5;
+            pointer-events: none;
         }
 
         .gallery-slide {
             display: none;
             width: 100%;
-            height: 400px;
+            height: 100%;
+            position: absolute;
+            inset: 0;
         }
 
         .gallery-slide.active {
@@ -741,117 +1103,162 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
+            display: block;
         }
 
         .gallery-slide.active img {
-            animation: zoomIn 0.5s ease;
+            animation: zoomIn 0.6s ease;
         }
 
         @keyframes zoomIn {
-            from { transform: scale(1.05); }
-            to { transform: scale(1); }
+            from {
+                transform: scale(1.06);
+            }
+            to {
+                transform: scale(1);
+            }
         }
 
         .gallery-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(212,175,55,0.9);
+            background: rgba(212, 175, 55, 0.85);
             color: var(--primary-green);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            font-size: 1.1rem;
+            transition: all var(--transition-smooth);
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .gallery-nav:hover {
             background: var(--gold);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+            transform: translateY(-50%) scale(1.12);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
         }
 
-        .gallery-nav.prev { left: 10px; }
-        .gallery-nav.next { right: 10px; }
+        .gallery-nav:active {
+            transform: translateY(-50%) scale(0.94);
+            transition: all 0.1s ease;
+        }
+
+        .gallery-nav.prev {
+            left: 12px;
+        }
+        .gallery-nav.next {
+            right: 12px;
+        }
 
         .gallery-dots {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 16px;
         }
 
         .dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(212,175,55,0.3);
+            background: rgba(212, 175, 55, 0.3);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--transition-smooth);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .dot.active {
             background: var(--gold);
-            transform: scale(1.2);
-            box-shadow: 0 0 10px var(--gold);
+            transform: scale(1.3);
+            box-shadow: 0 0 12px var(--gold);
         }
 
-        /* Thank You Section */
+        .dot:hover {
+            background: rgba(212, 175, 55, 0.6);
+            transform: scale(1.15);
+        }
+
+        /* ================================================================
+           THANK YOU SECTION
+           ================================================================ */
         #thank-you {
             text-align: center;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            background:
+                radial-gradient(ellipse at 40% 50%, rgba(10, 92, 58, 0.5) 0%, transparent 60%),
+                linear-gradient(160deg, var(--light-green) 0%, var(--primary-green) 50%, var(--deep-green) 100%);
             position: relative;
             overflow: hidden;
+            border-radius: 30px 30px 0 0;
+            margin-top: 8px;
+            padding-bottom: 50px;
         }
 
-        /* ✨ Thank You Floating Hearts */
         #thank-you::before {
             content: '💕';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2rem;
-            animation: floatHeart 4s infinite ease-in-out;
-            opacity: 0.3;
+            top: 22px;
+            left: 22px;
+            font-size: 1.8rem;
+            animation: floatHeart 4.5s infinite ease-in-out;
+            opacity: 0.25;
+            pointer-events: none;
         }
 
         #thank-you::after {
             content: '💕';
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 2rem;
-            animation: floatHeart 4s infinite ease-in-out reverse;
-            opacity: 0.3;
+            bottom: 22px;
+            right: 22px;
+            font-size: 1.8rem;
+            animation: floatHeart 4.5s infinite ease-in-out 1s;
+            opacity: 0.25;
+            pointer-events: none;
         }
 
         @keyframes floatHeart {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(10deg); }
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            40% {
+                transform: translateY(-16px) rotate(8deg);
+            }
+            60% {
+                transform: translateY(-8px) rotate(-4deg);
+            }
+        }
+
+        #thank-you p {
+            position: relative;
+            z-index: 1;
         }
 
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin: 10px;
-            padding: 15px 35px;
+            margin: 8px;
+            padding: 14px 34px;
             background: #25D366;
-            color: white;
+            color: #ffffff;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+            font-size: 0.95rem;
+            transition: all var(--transition-smooth);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.03em;
         }
 
         .whatsapp-btn::before {
@@ -861,7 +1268,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
             transition: left 0.5s ease;
         }
 
@@ -871,97 +1278,93 @@
 
         .whatsapp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37,211,102,0.4);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+            background: #22c35e;
         }
-		
-		/* ✨ "The Wedding of" Styling */
-		.wedding-of-text {
-			font-family: 'Playfair Display', serif;
-			font-size: 1.3rem;
-			color: var(--gold);
-			font-weight: 400;
-			font-style: italic;
-			letter-spacing: 3px;
-			text-transform: uppercase;
-			margin: 15px 0 25px 0;
-			position: relative;
-			display: inline-block;
-			animation: fadeInDown 1s ease 0.3s both;
-			text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-		}
 
-		/* Decorative flourishes on sides */
-		.wedding-of-text::before,
-		.wedding-of-text::after {
-			content: '✦';
-			color: var(--gold);
-			font-size: 0.9rem;
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			opacity: 0.8;
-		}
+        .whatsapp-btn:active {
+            transform: translateY(-1px) scale(0.97);
+        }
 
-		.wedding-of-text::before {
-			left: -25px;
-		}
-
-		.wedding-of-text::after {
-			right: -25px;
-		}
-
-		/* Animation for entrance */
-		@keyframes fadeInDown {
-			from {
-				opacity: 0;
-				transform: translateY(-15px);
-			}
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-	}
-
-	/* Responsive adjustments */
-		@media (max-width: 480px) {
-		.wedding-of-text {
-			font-size: 1.1rem;
-			letter-spacing: 2px;
-			margin: 10px 0 20px 0;
-		}
-    
-		.wedding-of-text::before,
-		.wedding-of-text::after {
-			font-size: 0.8rem;
-			left: -20px;
-			right: -20px;
-		}
-	}
-
-		/* Footer */
+        /* ================================================================
+           FOOTER
+           ================================================================ */
         footer {
             text-align: center;
-            padding: 30px 20px;
-            background: rgba(0,0,0,0.3);
+            padding: 28px 20px;
+            background: rgba(0, 0, 0, 0.35);
             font-size: 0.85rem;
             color: var(--cream);
             opacity: 0.8;
             position: relative;
+            letter-spacing: 0.03em;
         }
 
         footer::before {
             content: '✦';
             color: var(--gold);
             margin-right: 8px;
+            opacity: 0.7;
         }
 
         footer::after {
             content: '✦';
             color: var(--gold);
             margin-left: 8px;
+            opacity: 0.7;
         }
 
-        /* Animations */
+        /* ================================================================
+           MUSIC CONTROL
+           ================================================================ */
+        .music-control {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 24px rgba(212, 175, 55, 0.5);
+            transition: all var(--transition-smooth);
+            border: none;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.65);
+            background: var(--gold-light);
+        }
+
+        .music-control:active {
+            transform: scale(0.94);
+        }
+
+        .music-control.playing {
+            animation: rotateDisc 3.5s linear infinite;
+            background: var(--gold-light);
+        }
+
+        @keyframes rotateDisc {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================================================================
+           ANIMATIONS
+           ================================================================ */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -974,99 +1377,367 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        /* Responsive */
-        @media (max-width: 320px) {
-            .bride-names {
-                font-size: 2rem;
+        /* ================================================================
+           UTILITY CLASSES
+           ================================================================ */
+        .gold-text {
+            color: var(--gold);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        /* ================================================================
+           RESPONSIVE BREAKPOINTS
+           ================================================================ */
+
+        /* Tablet & Small Desktop (768px - 1024px) */
+        @media (max-width: 1024px) {
+            section {
+                padding: var(--section-padding-tablet);
+                max-width: 580px;
             }
 
-            .section-title {
-                font-size: 1.5rem;
+            .landing-content::before {
+                width: 250px;
+                height: 250px;
+            }
+            .landing-content::after {
+                width: 220px;
+                height: 220px;
+            }
+
+            .gallery-container {
+                max-height: 380px;
+            }
+        }
+
+        /* Large Mobile / Small Tablet (480px - 768px) */
+        @media (max-width: 768px) {
+            section {
+                padding: var(--section-padding-mobile);
+                max-width: 100%;
+            }
+
+            section::before,
+            section::after {
+                width: 65%;
+                max-width: 300px;
+            }
+
+            .landing-content::before {
+                width: 220px;
+                height: 220px;
+            }
+            .landing-content::after {
+                width: 195px;
+                height: 195px;
+            }
+
+            .bride-names {
+                font-size: clamp(1.6rem, 6vw, 2.2rem);
+            }
+
+            .bride-card {
+                padding: 26px 18px;
+            }
+
+            .bride-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .countdown-container {
+                gap: 8px;
             }
 
             .countdown-box {
-                min-width: 60px;
-                padding: 10px;
-            }
-
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-
-            .gallery-slide {
-                height: 300px;
+                min-width: 55px;
+                padding: 10px 12px;
             }
 
             .timeline {
-                margin-left: 10px;
+                margin-left: 8px;
             }
-
             .timeline::before {
                 left: 8px;
             }
-
             .timeline-dot {
                 left: 0;
                 width: 16px;
                 height: 16px;
             }
-
             .timeline-item {
-                padding-left: 38px;
+                padding-left: 36px;
+                margin-bottom: 26px;
+            }
+            .timeline-content {
+                padding: 15px 16px;
+            }
+
+            .gallery-container {
+                aspect-ratio: 3/2;
+                max-height: 340px;
+                min-height: 240px;
+            }
+
+            .gallery-nav {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+
+            .open-btn {
+                padding: 13px 30px;
+                font-size: 0.88rem;
+                letter-spacing: 2px;
             }
 
             .floral-corner {
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
+                opacity: 0.25;
+            }
+
+            .wedding-of-text::before {
+                left: -22px;
+            }
+            .wedding-of-text::after {
+                right: -22px;
             }
         }
 
-        /* Music Control */
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.5);
-            transition: all 0.3s;
+        /* Small Mobile (320px - 480px) */
+        @media (max-width: 480px) {
+            section {
+                padding: 38px 14px;
+            }
+
+            section::before,
+            section::after {
+                width: 55%;
+                max-width: 240px;
+            }
+
+            .bride-names {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.35rem;
+            }
+
+            .countdown-box {
+                min-width: 50px;
+                padding: 8px 10px;
+                border-radius: 10px;
+            }
+
+            .countdown-number {
+                font-size: 1.4rem;
+            }
+            .countdown-label {
+                font-size: 0.6rem;
+                letter-spacing: 1px;
+            }
+
+            .gallery-container {
+                aspect-ratio: 4/3;
+                max-height: 280px;
+                min-height: 200px;
+                border-radius: 14px;
+            }
+
+            .gallery-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+            .gallery-nav.prev {
+                left: 8px;
+            }
+            .gallery-nav.next {
+                right: 8px;
+            }
+
+            .timeline {
+                margin-left: 4px;
+            }
+            .timeline::before {
+                left: 6px;
+            }
+            .timeline-dot {
+                left: -2px;
+                width: 14px;
+                height: 14px;
+                border-width: 2px;
+            }
+            .timeline-item {
+                padding-left: 30px;
+                margin-bottom: 22px;
+            }
+            .timeline-content {
+                padding: 14px 14px;
+                border-radius: 10px;
+            }
+            .timeline-date {
+                font-size: 0.85rem;
+            }
+            .timeline-content p,
+            .timeline-content div:not(.timeline-date) {
+                font-size: 0.82rem;
+            }
+
+            .floral-corner {
+                width: 50px;
+                height: 50px;
+                opacity: 0.2;
+            }
+
+            .landing-content::before {
+                width: 180px;
+                height: 180px;
+            }
+            .landing-content::after {
+                width: 158px;
+                height: 158px;
+            }
+
+            .wedding-of-text {
+                font-size: 0.95rem;
+                letter-spacing: 1.5px;
+                margin: 14px 0 22px 0;
+            }
+            .wedding-of-text::before,
+            .wedding-of-text::after {
+                font-size: 0.65rem;
+            }
+            .wedding-of-text::before {
+                left: -18px;
+            }
+            .wedding-of-text::after {
+                right: -18px;
+            }
+
+            .open-btn {
+                padding: 12px 26px;
+                font-size: 0.82rem;
+                letter-spacing: 1.5px;
+                margin-top: 28px;
+            }
+
+            .bride-photo {
+                width: 105px;
+                height: 105px;
+                border-width: 3px;
+            }
+
+            .bride-card {
+                padding: 22px 14px;
+                border-radius: 14px;
+            }
+
+            .music-control {
+                width: 42px;
+                height: 42px;
+                bottom: 16px;
+                right: 16px;
+                font-size: 1rem;
+            }
+
+            .whatsapp-btn {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+                gap: 7px;
+            }
+
+            .map-btn {
+                padding: 11px 24px;
+                font-size: 0.85rem;
+                gap: 7px;
+            }
+
+            .calendar-btn {
+                padding: 11px 26px;
+                font-size: 0.85rem;
+            }
+
+            .location-card {
+                padding: 26px 16px;
+                border-radius: 14px;
+            }
         }
 
-        .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(212,175,55,0.6);
+        /* Extra Small (below 360px) */
+        @media (max-width: 360px) {
+            .bride-names {
+                font-size: 1.3rem;
+            }
+
+            .countdown-container {
+                gap: 5px;
+            }
+            .countdown-box {
+                min-width: 44px;
+                padding: 7px 6px;
+                border-radius: 8px;
+            }
+            .countdown-number {
+                font-size: 1.2rem;
+            }
+            .countdown-label {
+                font-size: 0.55rem;
+            }
+
+            .gallery-container {
+                min-height: 180px;
+            }
+
+            .open-btn {
+                padding: 10px 22px;
+                font-size: 0.78rem;
+            }
         }
 
-        .music-control.playing {
-            animation: rotate 3s linear infinite;
-        }
+        /* Large Desktop (above 1400px) */
+        @media (min-width: 1400px) {
+            section {
+                max-width: 650px;
+                padding: 80px 28px;
+            }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+            .gallery-container {
+                max-height: 480px;
+            }
 
-        /* Utility */
-        .gold-text { color: var(--gold); }
-        .text-center { text-align: center; }
-        .mt-20 { margin-top: 20px; }
-        .mb-20 { margin-bottom: 20px; }
+            .landing-content::before {
+                width: 320px;
+                height: 320px;
+            }
+            .landing-content::after {
+                width: 285px;
+                height: 285px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ✨ Background Sparkles (Generated by JS) -->
+    <!-- ✨ Background Sparkles Container -->
     <div id="sparkles-container"></div>
 
     <!-- 🌸 Corner Decorations -->
@@ -1082,37 +1753,39 @@
     </audio>
 
     <!-- Music Control Button -->
-    <div class="music-control" id="musicToggle" onclick="toggleMusic()" title="Toggle Music">
+    <button class="music-control" id="musicToggle" onclick="toggleMusic()" title="Toggle Music" aria-label="Toggle background music">
         <i class="fas fa-music"></i>
+    </button>
+
+    <!-- ================================================================
+    LANDING SECTION
+    ================================================================ -->
+    <div id="landing">
+        <div class="landing-content">
+            <div class="invitee-name" id="invitee-display">To the esteemed</div>
+            <div class="invitee-name" id="invitee-name">Mr./Mrs.</div>
+
+            <div class="wedding-of-text">You are invited to the Wedding Ceremony &amp; Reception</div>
+
+            <div class="bride-names">
+                <div>Deni Eko Santoso</div>
+                <div class="ampersand">&amp;</div>
+                <div>Kharisma Fitri Hapsari</div>
+            </div>
+
+            <div style="margin-top: 18px; font-size: 0.9rem; opacity: 0.85; letter-spacing: 0.04em;">
+                <i class="fas fa-calendar-alt" style="color: var(--gold);"></i>&nbsp; Saturday, 1 August 2026
+            </div>
+
+            <button class="open-btn" onclick="openInvitation()">
+                <i class="fas fa-envelope-open"></i>&nbsp; Click to Open Invitation
+            </button>
+        </div>
     </div>
 
-    <!-- Landing Section -->
-<!-- Landing Section -->
-	<div id="landing">
-		<div class="landing-content">
-			<div class="invitee-name" id="invitee-display">To the esteemed</div>
-			<div class="invitee-name" id="invitee-name">Mr./Mrs.</div>
-
-			<!-- ✨ New: "The Wedding of" Text -->
-			<div class="wedding-of-text">The Wedding of</div>
-
-			<div class="bride-names">
-				<div>Deni Eko Santoso</div>
-			<div class="ampersand">&</div>
-				<div>Kharisma Fitri Hapsari</div>
-			</div>
-
-			<div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.9;">
-				<i class="fas fa-calendar-alt"></i> 1 August 2026
-			</div>
-
-			<button class="open-btn" onclick="openInvitation()">
-				<i class="fas fa-envelope-open"></i> Click to Open Invitation
-			</button>
-		</div>
-	</div>
-
-    <!-- Main Content -->
+    <!-- ================================================================
+    MAIN CONTENT
+    ================================================================ -->
     <div id="main-content">
 
         <!-- Quote Section -->
@@ -1122,34 +1795,33 @@
             <div class="quote-text">
                 "Another of His signs is that He created spouses from among yourselves for you to live with in tranquillity: He ordained love and kindness between you. There truly are signs in this for those who reflect."
             </div>
-            <div style="margin-top: 20px; font-size: 0.9rem;">- Ar-Rum: 21</div>
+            <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">&mdash; Ar-Rum: 21</div>
         </section>
 
         <!-- Bride Info Section -->
         <section id="brides">
-
             <div class="bride-container">
-			    <div class="section-title">The Groom</div>
-				<div class="decorative-divider"><span></span></div>
-					<div class="bride-card">
-						<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Deni Eko Santoso" class="bride-photo">
-						<h3 class="bride-name">Deni Eko Santoso</h3>
-						<p class="bride-parents">Son of<br>Mr. Budi Santoso & Mrs. Dina Permana Sari</p>
-						<div style="margin-top: 15px;">
-							<a href="https://instagram.com/" target="dekosantoso" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-						</div>
-					</div>
-
-                <div style="text-align: center; font-size: 2rem; color: var(--gold); position: relative; z-index: 1;">&</div>
-				<div class="section-title">The Bride</div>
-				<div class="decorative-divider"><span></span></div>
-
+                <div class="section-title">The Groom</div>
+                <div class="decorative-divider"><span></span></div>
                 <div class="bride-card">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Kharisma Fitri Hapsari" class="bride-photo">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Deni Eko Santoso" class="bride-photo" loading="lazy">
+                    <h3 class="bride-name">Deni Eko Santoso</h3>
+                    <p class="bride-parents">Son of<br>Mr. Budi Santoso &amp; Mrs. Dina Permana Sari</p>
+                    <div class="bride-social">
+                        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram Deni"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="bride-separator">&amp;</div>
+
+                <div class="section-title">The Bride</div>
+                <div class="decorative-divider"><span></span></div>
+                <div class="bride-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Kharisma Fitri Hapsari" class="bride-photo" loading="lazy">
                     <h3 class="bride-name">Kharisma Fitri Hapsari</h3>
-                    <p class="bride-parents">Daughter of<br>Mr. Muhammad Arief & Mrs. Dewi Setyarini</p>
-                    <div style="margin-top: 15px;">
-                        <a href="https://instagram.com" target="kharismafh" style="color: var(--gold); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                    <p class="bride-parents">Daughter of<br>Mr. Muhammad Arief &amp; Mrs. Dewi Setyarini</p>
+                    <div class="bride-social">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram Kharisma"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -1161,10 +1833,12 @@
             <div class="decorative-divider"><span></span></div>
 
             <div class="wedding-date">
-                <i class="fas fa-heart" style="color: var(--gold);"></i> 
-                Saturday, 1 August 2026
+                <i class="fas fa-heart" style="color: var(--gold);"></i>
+                &nbsp; Saturday, 1 August 2026 &nbsp;
                 <i class="fas fa-heart" style="color: var(--gold);"></i>
             </div>
+            <div class="wedding-time">Wedding Ceremony : 10.00 &ndash; 12.00</div>
+            <div class="wedding-time">Reception : 12.00 &ndash; 14.00</div>
 
             <div class="countdown-container" id="countdown">
                 <div class="countdown-box">
@@ -1186,7 +1860,7 @@
             </div>
 
             <a href="#" class="calendar-btn" onclick="addToCalendar(event)">
-                <i class="fas fa-calendar-plus"></i> Add to Calendar
+                <i class="fas fa-calendar-plus"></i>&nbsp; Add to Calendar
             </a>
         </section>
 
@@ -1196,16 +1870,16 @@
             <div class="decorative-divider"><span></span></div>
 
             <div class="location-card">
-                <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 15px; margin-top: 10px;"></i>
-                <h3 style="margin-bottom: 10px;">The Wedding Venue</h3>
-                <p style="margin-bottom: 20px; opacity: 0.9;">
-                    Bebek & Ayam Goreng Pak Ndut<br>
-                    Jl. Bina Marga No.17, RT.04/RW.11, Baranangsiang, Kec. Bogor Timur<br>
+                <i class="fas fa-map-marker-alt" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 14px; margin-top: 12px; display: block;"></i>
+                <h3>The Wedding Venue</h3>
+                <p>
+                    Bebek &amp; Ayam Goreng Pak Ndut<br>
+                    Jl. Bina Marga No.17, RT.04/RW.11, Baranangsiang,<br>Kec. Bogor Timur<br>
                     Kota Bogor, Jawa Barat 16143
                 </p>
 
-                <a href="https://maps.app.goo.gl/fNeQmqoyhXD7vCHD6" target="_blank" class="map-btn">
-                    <i class="fas fa-location-arrow"></i> Open in Google Maps
+                <a href="https://maps.app.goo.gl/fNeQmqoyhXD7vCHD6" target="_blank" rel="noopener" class="map-btn">
+                    <i class="fas fa-location-arrow"></i>&nbsp; Open in Google Maps
                 </a>
             </div>
         </section>
@@ -1219,32 +1893,32 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-heart"></i> First Met - January 2025</div>
-                        <div>We met as stranger, didn't really aware that we are closer than we think</div>
+                        <div class="timeline-date"><i class="fas fa-heart"></i> First Met &ndash; January 2025</div>
+                        <div>We met as strangers, unaware that we were closer than we could ever imagine</div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-ring"></i>First Date - February 2025</div>
-                        <div>First time we met and listen to each other story</div>
+                        <div class="timeline-date"><i class="fas fa-ring"></i> First Date &ndash; February 2025</div>
+                        <div>The first time we sat together and listened to each other's stories</div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-gem"></i>Engagement - April 2026</div>
-                        <div>Promised our hearts to each other with love</div>
+                        <div class="timeline-date"><i class="fas fa-gem"></i> Engagement &ndash; April 2026</div>
+                        <div>We promised our hearts to one another with love and devotion</div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date"><i class="fas fa-church"></i>Wedding - August 2026</div>
-                        <div>The Wedding Day - Celebrating our love with you</div>
+                        <div class="timeline-date"><i class="fas fa-church"></i> Wedding &ndash; August 2026</div>
+                        <div>The Wedding Day &mdash; celebrating our love together with you</div>
                     </div>
                 </div>
             </div>
@@ -1257,31 +1931,31 @@
 
             <div class="gallery-container">
                 <div class="gallery-slide active">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Gallery 1">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Gallery Photo 1" loading="lazy">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop" alt="Gallery 2">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&h=600&fit=crop" alt="Gallery Photo 2" loading="lazy">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=600&fit=crop" alt="Gallery 3">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&h=600&fit=crop" alt="Gallery Photo 3" loading="lazy">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop" alt="Gallery 4">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop" alt="Gallery Photo 4" loading="lazy">
                 </div>
 
-                <button class="gallery-nav prev" onclick="changeSlide(-1)">
+                <button class="gallery-nav prev" onclick="changeSlide(-1)" aria-label="Previous photo">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="gallery-nav next" onclick="changeSlide(1)">
+                <button class="gallery-nav next" onclick="changeSlide(1)" aria-label="Next photo">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
 
             <div class="gallery-dots">
-                <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot active" onclick="currentSlide(1)" role="button" tabindex="0" aria-label="Photo 1"></span>
+                <span class="dot" onclick="currentSlide(2)" role="button" tabindex="0" aria-label="Photo 2"></span>
+                <span class="dot" onclick="currentSlide(3)" role="button" tabindex="0" aria-label="Photo 3"></span>
+                <span class="dot" onclick="currentSlide(4)" role="button" tabindex="0" aria-label="Photo 4"></span>
             </div>
         </section>
 
@@ -1290,21 +1964,21 @@
             <div class="section-title">Thank You</div>
             <div class="decorative-divider"><span></span></div>
 
-            <p style="margin-bottom: 20px; line-height: 1.8;">
+            <p style="margin-bottom: 20px; line-height: 1.9; font-size: 0.95rem;">
                 Thank you for your presence and blessings.<br>
-                It is a joy and honor for us if you are willing to come to give us your blessing.
+                It is a joy and honor for us if you are willing to come<br>and share your blessing on our special day.
             </p>
 
-            <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin: 30px 0;">
-                Deni Eko Santoso & Kharisma Fitri Hapsari
+            <p style="font-family: 'Playfair Display', serif; font-size: clamp(1.15rem, 3vw, 1.35rem); color: var(--gold); margin: 30px 0; letter-spacing: 0.03em;">
+                Deni Eko Santoso &amp; Kharisma Fitri Hapsari
             </p>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px;">
-                <a href="https://wa.me/6287891712784" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Deni
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+                <a href="https://wa.me/6287891712784" target="_blank" rel="noopener" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>&nbsp; Deni
                 </a>
-                <a href="https://wa.me/6289646409725" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Riris
+                <a href="https://wa.me/6289646409725" target="_blank" rel="noopener" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>&nbsp; Riris
                 </a>
             </div>
         </section>
@@ -1320,25 +1994,21 @@
         // ✨ Generate Floating Sparkles
         function createSparkles() {
             const container = document.getElementById('sparkles-container');
-            const sparkleCount = 15;
+            const sparkleCount = 18;
 
             for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
-                
-                // Random position
+
                 sparkle.style.left = Math.random() * 100 + 'vw';
                 sparkle.style.top = Math.random() * 100 + 'vh';
-                
-                // Random animation delay and duration
-                sparkle.style.animationDelay = Math.random() * 6 + 's';
-                sparkle.style.animationDuration = (4 + Math.random() * 4) + 's';
-                
-                // Random size
-                const size = 2 + Math.random() * 4;
+                sparkle.style.animationDelay = Math.random() * 7 + 's';
+                sparkle.style.animationDuration = (4 + Math.random() * 5) + 's';
+
+                const size = 2 + Math.random() * 5;
                 sparkle.style.width = size + 'px';
                 sparkle.style.height = size + 'px';
-                
+
                 container.appendChild(sparkle);
             }
         }
@@ -1355,7 +2025,6 @@
 
         // Open Invitation Function
         function openInvitation() {
-            // Play music IMMEDIATELY on user click
             playMusic();
 
             const landing = document.getElementById('landing');
@@ -1385,7 +2054,8 @@
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<h2 style="color: var(--gold);">The Big Day is Here! ❤</h2>';
+                document.getElementById('countdown').innerHTML =
+                    '<h2 style="color: var(--gold); font-family: \'Playfair Display\', serif; width: 100%;">The Big Day is Here! ❤</h2>';
             }
         }
 
@@ -1404,7 +2074,8 @@
                 location: 'Bebek & Ayam Goreng Pak Ndut, Jl. Bina Marga No.17, Bogor'
             };
 
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.date}/${event.endDate}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
+            const googleCalendarUrl =
+                `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.date}/${event.endDate}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
 
             window.open(googleCalendarUrl, '_blank');
         }
@@ -1454,10 +2125,12 @@
                 audio.play();
                 btn.classList.add('playing');
                 btn.innerHTML = '<i class="fas fa-pause"></i>';
+                btn.title = 'Pause Music';
             } else {
                 audio.pause();
                 btn.classList.remove('playing');
                 btn.innerHTML = '<i class="fas fa-music"></i>';
+                btn.title = 'Play Music';
             }
         }
 
@@ -1466,10 +2139,12 @@
             if (!audio) return;
 
             audio.play().then(() => {
-                document.getElementById('musicToggle').classList.add('playing');
+                const btn = document.getElementById('musicToggle');
+                btn.classList.add('playing');
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+                btn.title = 'Pause Music';
             }).catch(err => {
                 console.warn('Autoplay blocked:', err);
-                // Show subtle hint to user
                 const btn = document.getElementById('musicToggle');
                 btn.title = 'Tap to play music';
             });
@@ -1477,7 +2152,7 @@
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1486,10 +2161,10 @@
             });
         });
 
-        // Add scroll animation
+        // Intersection Observer for scroll animations
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1505,11 +2180,11 @@
         document.querySelectorAll('section').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.6s ease';
+            section.style.transition = 'all 0.7s ease';
             observer.observe(section);
         });
 
-        // Initialize decorations
+        // Initialize sparkles on DOM ready
         document.addEventListener('DOMContentLoaded', () => {
             createSparkles();
         });
