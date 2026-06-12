@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -69,6 +70,9 @@
             content: '';
             position: fixed;
             inset: 0;
+            /* Removed background-attachment: fixed from each layer — it disables GPU compositing
+               and causes full-page repaints on every scroll tick. Since the element is already
+               position: fixed, the visual result is identical without the performance penalty. */
             background:
                 /* Deep base gradient */
                 linear-gradient(180deg,
@@ -77,20 +81,22 @@
                     #073d26 30%,
                     #064028 50%,
                     #052f1e 70%,
-                    #042415 100%) fixed,
+                    #042415 100%),
                 /* Warm gold glows */
-                radial-gradient(ellipse at 15% 85%, rgba(212, 175, 55, 0.1) 0%, transparent 55%) fixed,
-                radial-gradient(ellipse at 78% 12%, rgba(212, 175, 55, 0.09) 0%, transparent 50%) fixed,
-                radial-gradient(ellipse at 50% 45%, rgba(232, 200, 74, 0.05) 0%, transparent 65%) fixed,
-                radial-gradient(ellipse at 30% 55%, rgba(10, 92, 58, 0.4) 0%, transparent 60%) fixed,
+                radial-gradient(ellipse at 15% 85%, rgba(212, 175, 55, 0.1) 0%, transparent 55%),
+                radial-gradient(ellipse at 78% 12%, rgba(212, 175, 55, 0.09) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 45%, rgba(232, 200, 74, 0.05) 0%, transparent 65%),
+                radial-gradient(ellipse at 30% 55%, rgba(10, 92, 58, 0.4) 0%, transparent 60%),
                 /* Subtle texture overlay */
                 repeating-linear-gradient(0deg,
                     transparent,
                     transparent 2px,
                     rgba(255, 255, 255, 0.003) 2px,
-                    rgba(255, 255, 255, 0.003) 4px) fixed;
+                    rgba(255, 255, 255, 0.003) 4px);
             pointer-events: none;
             z-index: -3;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         /* Subtle gold particle texture */
@@ -98,6 +104,8 @@
             content: '';
             position: fixed;
             inset: 0;
+            will-change: transform;
+            transform: translateZ(0);
             background-image:
                 radial-gradient(1px 1px at 12% 18%, rgba(212, 175, 55, 0.5), transparent),
                 radial-gradient(1px 1px at 25% 35%, rgba(212, 175, 55, 0.4), transparent),
@@ -126,6 +134,7 @@
             animation: floatSparkle 6s infinite ease-in-out;
             opacity: 0;
             box-shadow: 0 0 8px var(--gold-light), 0 0 20px rgba(212, 175, 55, 0.4);
+            will-change: transform, opacity;
         }
 
         @keyframes floatSparkle {
@@ -783,17 +792,17 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
             animation: shimmer 2.5s infinite;
+            transform: translateX(-100%);
         }
 
         @keyframes shimmer {
-            100% {
-                left: 100%;
-            }
+            from { transform: translateX(-100%); }
+            to   { transform: translateX(100%);  }
         }
 
         .countdown-number {
@@ -838,15 +847,16 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
         .calendar-btn:hover::before {
-            left: 100%;
+            transform: translateX(100%);
         }
 
         .calendar-btn:hover {
@@ -988,6 +998,7 @@
             z-index: 2;
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), 0 0 18px rgba(212, 175, 55, 0.5);
             animation: pulseDot 2.5s infinite ease-in-out;
+            will-change: box-shadow;
         }
 
         @keyframes pulseDot {
@@ -1264,15 +1275,16 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-            transition: left 0.5s ease;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
         .whatsapp-btn:hover::before {
-            left: 100%;
+            transform: translateX(100%);
         }
 
         .whatsapp-btn:hover {
@@ -1746,7 +1758,7 @@
     <div class="floral-corner bottom-right"></div>
 
     <!-- Audio Element -->
-    <audio id="bg-music" loop preload="auto">
+    <audio id="bg-music" loop preload="none">
         <source src="wedding.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1803,7 +1815,7 @@
                 <div class="section-title">The Groom</div>
                 <div class="decorative-divider"><span></span></div>
                 <div class="bride-card">
-				<img src="https://drive.google.com/thumbnail?sz=w800&id=1d8vwLB2pYpcbn07z5Oh7EMPna2I-zJiB" alt="Deni Eko Santoso" class="bride-photo" loading="lazy" referrerpolicy="no-referrer">
+				<img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1d8vwLB2pYpcbn07z5Oh7EMPna2I-zJiB" alt="Deni Eko Santoso" class="bride-photo" loading="lazy" referrerpolicy="no-referrer">
                     <h3 class="bride-name">Deni Eko Santoso</h3>
                     <p class="bride-parents">Son of<br>Mr. Budi Santoso &amp; Mrs. Dina Permana Sari</p>
                     <div class="bride-social">
@@ -1816,7 +1828,7 @@
                 <div class="section-title">The Bride</div>
                 <div class="decorative-divider"><span></span></div>
                 <div class="bride-card">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1cDAI7Jm_NfREk_wnbNHjGlpsP0I6F-57" alt="Kharisma Fitri Hapsari" class="bride-photo" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1cDAI7Jm_NfREk_wnbNHjGlpsP0I6F-57" alt="Kharisma Fitri Hapsari" class="bride-photo" loading="lazy" referrerpolicy="no-referrer">
                     <h3 class="bride-name">Kharisma Fitri Hapsari</h3>
                     <p class="bride-parents">Daughter of<br>Mr. Muhammad Arief &amp; Mrs. Dewi Setyarini</p>
                     <div class="bride-social">
@@ -1938,28 +1950,28 @@
 
             <div class="gallery-container">
                 <div class="gallery-slide active">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=15Qwjib4ejchuBrOziMFulaIfIbCUpzds" alt="Gallery Photo 1" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=15Qwjib4ejchuBrOziMFulaIfIbCUpzds" alt="Gallery Photo 1" loading="eager" referrerpolicy="no-referrer">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1wVtiwP0q8_z3ff8UJu0jluPDWRguEvnI" alt="Gallery Photo 2" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1wVtiwP0q8_z3ff8UJu0jluPDWRguEvnI" alt="Gallery Photo 2" loading="lazy" referrerpolicy="no-referrer">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1mwdBnifg44_H9Wg3X06WTY2BW5uhbJcx" alt="Gallery Photo 3" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1mwdBnifg44_H9Wg3X06WTY2BW5uhbJcx" alt="Gallery Photo 3" loading="lazy" referrerpolicy="no-referrer">
                 </div>
                 <div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1yHwDlA8FPjK8kdv12f-wH56G9Xrz-HZ2" alt="Gallery Photo 4" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1yHwDlA8FPjK8kdv12f-wH56G9Xrz-HZ2" alt="Gallery Photo 4" loading="lazy" referrerpolicy="no-referrer">
                 </div>
 
 				<div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1UZVXeSR_31qvJDF71Wg2ggq_N_jId9EC" alt="Gallery Photo 5" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1UZVXeSR_31qvJDF71Wg2ggq_N_jId9EC" alt="Gallery Photo 5" loading="lazy" referrerpolicy="no-referrer">
                 </div>
 
 				<div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=118CoDW-jleMv6WreWhv9QRJVtsLgxMWv" alt="Gallery Photo 6" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=118CoDW-jleMv6WreWhv9QRJVtsLgxMWv" alt="Gallery Photo 6" loading="lazy" referrerpolicy="no-referrer">
                 </div>
 
 				<div class="gallery-slide">
-                    <img src="https://drive.google.com/thumbnail?sz=w800&id=1LaotEXuU7H9n4DIT9bpYAqEIE93o5sXY" alt="Gallery Photo 7" loading="lazy" referrerpolicy="no-referrer">
+                    <img decoding="async" src="https://drive.google.com/thumbnail?sz=w800&id=1LaotEXuU7H9n4DIT9bpYAqEIE93o5sXY" alt="Gallery Photo 7" loading="lazy" referrerpolicy="no-referrer">
                 </div>
 
                 <button class="gallery-nav prev" onclick="changeSlide(-1)" aria-label="Previous photo">
@@ -1975,9 +1987,9 @@
                 <span class="dot" onclick="currentSlide(2)" role="button" tabindex="0" aria-label="Photo 2"></span>
                 <span class="dot" onclick="currentSlide(3)" role="button" tabindex="0" aria-label="Photo 3"></span>
                 <span class="dot" onclick="currentSlide(4)" role="button" tabindex="0" aria-label="Photo 4"></span>
-				<span class="dot" onclick="currentSlide(4)" role="button" tabindex="0" aria-label="Photo 5"></span>
-				<span class="dot" onclick="currentSlide(4)" role="button" tabindex="0" aria-label="Photo 6"></span>
-				<span class="dot" onclick="currentSlide(4)" role="button" tabindex="0" aria-label="Photo 7"></span>
+				<span class="dot" onclick="currentSlide(5)" role="button" tabindex="0" aria-label="Photo 5"></span>
+				<span class="dot" onclick="currentSlide(6)" role="button" tabindex="0" aria-label="Photo 6"></span>
+				<span class="dot" onclick="currentSlide(7)" role="button" tabindex="0" aria-label="Photo 7"></span>
             </div>
         </section>
 
@@ -2016,7 +2028,7 @@
         // ✨ Generate Floating Sparkles
         function createSparkles() {
             const container = document.getElementById('sparkles-container');
-            const sparkleCount = 18;
+            const sparkleCount = 12; // Reduced from 18 — each sparkle is a fixed-position animated element
 
             for (let i = 0; i < sparkleCount; i++) {
                 const sparkle = document.createElement('div');
@@ -2046,6 +2058,7 @@
         const weddingDate = new Date('August 1, 2026 00:00:00').getTime();
 
         // Open Invitation Function
+        let galleryIntervalId = null;
         function openInvitation() {
             playMusic();
 
@@ -2057,6 +2070,10 @@
             setTimeout(() => {
                 mainContent.classList.add('show');
                 window.scrollTo(0, 0);
+                // Start gallery auto-advance only after invitation is open
+                if (!galleryIntervalId) {
+                    galleryIntervalId = setInterval(() => changeSlide(1), 5000);
+                }
             }, 800);
         }
 
@@ -2132,11 +2149,6 @@
             dots[slideIndex - 1].classList.add('active');
         }
 
-        // Auto-advance gallery
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000);
-
         // Music Functions
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
@@ -2180,7 +2192,7 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            });
+            }, { passive: false }); // passive: false needed here since we call preventDefault
         });
 
         // Intersection Observer for scroll animations
@@ -2194,6 +2206,11 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    // Clean up will-change after the transition finishes and stop watching
+                    setTimeout(() => {
+                        entry.target.style.willChange = 'auto';
+                    }, 750);
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -2202,14 +2219,13 @@
         document.querySelectorAll('section').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.7s ease';
+            section.style.transition = 'opacity 0.7s ease, transform 0.7s ease'; // was 'all' — animating all properties is slow
+            section.style.willChange = 'opacity, transform'; // hint to browser to create GPU layer pre-emptively
             observer.observe(section);
         });
 
-        // Initialize sparkles on DOM ready
-        document.addEventListener('DOMContentLoaded', () => {
-            createSparkles();
-        });
+        // Initialize sparkles immediately (script is at end of body, DOM is ready)
+        createSparkles();
     </script>
 </body>
 </html>
